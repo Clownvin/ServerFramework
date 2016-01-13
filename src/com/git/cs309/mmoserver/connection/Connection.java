@@ -5,6 +5,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import com.git.cs309.mmoserver.Config;
@@ -33,7 +34,7 @@ public class Connection extends Thread {
     
     @Override
     public void run() {
-	byte[] buffer = new byte[Config.MAX_PACKET_BYTES]; // Instantiate it outside the loops so that VM isn't constantly deallocating.
+	byte[] buffer;
 	int bufferIndex = 0;
 	int packetsThisTick = 0;
 	boolean success = true;
@@ -59,9 +60,13 @@ public class Connection extends Thread {
 		do {
 		    success = true;
 		    bufferIndex = 0;
+		    buffer = new byte[Config.MAX_PACKET_BYTES];
+		    int packetLength = 2;
 		    if ((buffer[bufferIndex++] = (byte) input.read()) == -1) { // We're getting EOF character.
 			int count = 0;
+			packetLength++;
 			while ((buffer[bufferIndex++] = (byte) input.read()) == -1) {
+			    packetLength++;
 			    if (count++ == 20) {
 				logoutRequested = true;
 				success = false;
@@ -70,13 +75,14 @@ public class Connection extends Thread {
 			}
 		    }
 		    while (success && (buffer[bufferIndex++] = (byte) input.read()) != '\n') {
+			packetLength++;
 			if (bufferIndex == buffer.length) {
 			    success = false;
 			}
 		    }
 		    if (success) {
 			packetsThisTick++;
-			packet = PacketFactory.buildPacket(buffer, this);
+			packet = PacketFactory.buildPacket(Arrays.copyOfRange(buffer, 0, packetLength), this);
 		    }
 		    if (packetsThisTick > Config.PACKETS_PER_TICK_BEFORE_KICK) {
 			logoutRequested = true;

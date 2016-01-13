@@ -8,7 +8,7 @@ public class MessagePacket extends Packet {
     public MessagePacket(final byte[] buffer, final Connection source) {
 	super(source);
 	char[] chars = new char[buffer.length - 2];
-	for (int i = 1, j = 0; i < buffer.length; i++, j++) {
+	for (int i = 1, j = 0; i < buffer.length - 1; i++, j++) {
 	    chars[j] = (char) buffer[i];
 	}
 	message = String.valueOf(chars);

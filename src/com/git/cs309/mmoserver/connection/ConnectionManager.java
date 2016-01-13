@@ -8,6 +8,8 @@ import java.util.Map;
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.packets.Packet;
+import com.git.cs309.mmoserver.packets.PacketHandler;
+import com.git.cs309.mmoserver.packets.PacketType;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class ConnectionManager extends Thread implements TickReliant {
@@ -63,7 +65,10 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	    tickFinished = false;
 	    synchronized (connections) {
 		for (int i = 0; i < connections.size(); i++) {
-		    packets.add(connections.get(i).getPacket());
+		    Packet packet = connections.get(i).getPacket();
+		    if (packet != null && packet.getPacketType() != PacketType.NULL_PACKET) {
+			packets.add(packet);
+		    }
 		    if (connections.get(i).isDisconnected()) {
 			connectionMap.remove(connections.get(i).getIP());
 			System.out.println("Connection disconnected: "+connections.remove(i--).getIP());
@@ -73,7 +78,9 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	    synchronized (SINGLETON) {
 		SINGLETON.notifyAll();
 	    }
-	    //TODO Packet stuff.
+	    for (Packet packet : packets) {
+		PacketHandler.handlePacket(packet);
+	    }
 	    packets.clear();
 	    tickFinished = true;
 	    synchronized (tickObject) {

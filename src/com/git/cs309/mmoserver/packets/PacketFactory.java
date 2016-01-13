@@ -14,7 +14,10 @@ public final class PacketFactory {
 	    return null;
 	case 1: // Message packet
 	    return new MessagePacket(bytes, source);
+	case 2: // Login packet
+	    return new LoginPacket(bytes, source);
 	default:
+	    System.out.println("No case for type: "+bytes[0]);
 	    return null;
 	}
     }
