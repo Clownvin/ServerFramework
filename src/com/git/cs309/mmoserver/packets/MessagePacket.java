@@ -1,15 +1,22 @@
 package com.git.cs309.mmoserver.packets;
 
+import com.git.cs309.mmoserver.connection.Connection;
+
 public class MessagePacket extends Packet {
     private final String message;
     
-    public MessagePacket(byte[] buffer) {
-	super(buffer);
+    public MessagePacket(final byte[] buffer, final Connection source) {
+	super(source);
 	char[] chars = new char[buffer.length - 2];
 	for (int i = 1, j = 0; i < buffer.length; i++, j++) {
 	    chars[j] = (char) buffer[i];
 	}
 	message = String.valueOf(chars);
+    }
+    
+    public MessagePacket(final String message, final Connection destination) {
+	super(destination);
+	this.message = message;
     }
     
     public String getMessage() {

@@ -76,7 +76,7 @@ public class Connection extends Thread {
 		    }
 		    if (success) {
 			packetsThisTick++;
-			packet = PacketFactory.buildPacket(buffer);
+			packet = PacketFactory.buildPacket(buffer, this);
 		    }
 		    if (packetsThisTick > Config.PACKETS_PER_TICK_BEFORE_KICK) {
 			logoutRequested = true;

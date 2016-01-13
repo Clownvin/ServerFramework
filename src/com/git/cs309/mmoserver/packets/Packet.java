@@ -1,9 +1,10 @@
 package com.git.cs309.mmoserver.packets;
 
+import com.git.cs309.mmoserver.connection.Connection;
 import com.git.cs309.mmoserver.util.ByteFormatted;
 
 public abstract class Packet implements ByteFormatted {
-    
+    protected final Connection source;
     /*
      * Packet "toByte" convention:
      * first byte: packetType
@@ -11,8 +12,12 @@ public abstract class Packet implements ByteFormatted {
      * In between: Adequate representation of needed data.
      */
     
-    public Packet(final byte[] buffer) {
-	// Don't need to do anything here. It's abstract. Just forcing all implementing types to abide by this.
+    public Packet(final Connection source) {
+	this.source = source;
+    }
+    
+    public Connection getConnection() {
+	return source;
     }
     
     //Override this

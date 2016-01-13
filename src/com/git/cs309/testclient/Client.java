@@ -18,6 +18,7 @@ public class Client {
 	bytes[index] = '\n';
 	socket.getOutputStream().write(bytes);
 	socket.getOutputStream().flush();
+	socket.close();
     }
 
 }
