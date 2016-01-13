@@ -4,7 +4,7 @@ import com.git.cs309.mmoserver.connection.Connection;
 
 public class MessagePacket extends Packet {
     private final String message;
-    
+
     public MessagePacket(final byte[] buffer, final Connection source) {
 	super(source);
 	char[] chars = new char[buffer.length - 2];
@@ -13,12 +13,12 @@ public class MessagePacket extends Packet {
 	}
 	message = String.valueOf(chars);
     }
-    
+
     public MessagePacket(final String message, final Connection destination) {
 	super(destination);
 	this.message = message;
     }
-    
+
     public String getMessage() {
 	return message;
     }
@@ -34,7 +34,7 @@ public class MessagePacket extends Packet {
 	bytes[index] = '\n';
 	return bytes;
     }
-    
+
     @Override
     public PacketType getPacketType() {
 	return PacketType.MESSAGE_PACKET;

@@ -21,7 +21,7 @@ public class Connection extends Thread {
     private volatile boolean disconnected = false;
     private volatile Packet packet; // Making this volatile should allow for other threads to access it properly, as well as be changed by this thread properly.
     private volatile List<Packet> outgoingPackets = new ArrayList<>(10);
-    
+
     //Throwing IOException because if the exception occurs here, there's not much we can really do.
     //It's better to let the ConnectionAcceptor try and handle this issue.
     public Connection(final Socket socket) throws IOException {
@@ -31,7 +31,8 @@ public class Connection extends Thread {
 	this.ip = socket.getInetAddress().getHostAddress();
 	this.start();
     }
-    
+
+    //TODO Consider changing packet formats, so that first 4 bytes represent packet length. Will solve some potential issues.
     @Override
     public void run() {
 	byte[] buffer;
@@ -93,38 +94,46 @@ public class Connection extends Thread {
 		e.printStackTrace();
 	    }
 	}
+	close();
+	disconnected = true;
+    }
+
+    public void close() {
 	try {
-	    input.close();
-	    output.close();
-	    socket.close();
+	    if (input != null)
+		input.close();
+	    if (output != null)
+		output.close();
+	    if (socket != null)
+		socket.close();
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	disconnected = true;
+	logoutRequested = true;
     }
-    
+
     public void addOutgoingPacket(Packet packet) {
 	outgoingPackets.add(packet);
     }
-    
+
     //Since packet is volatile, shouldn't need synchronized method block.
     public Packet getPacket() {
 	return packet;
     }
-    
+
     public boolean isDisconnected() {
 	return disconnected;
     }
-    
+
     public String getIP() {
 	return ip;
     }
-    
+
     @Override
     public String toString() {
-	return "Connection:"+ip;
+	return "Connection:" + ip;
     }
-    
+
     @Override
     public boolean equals(Object other) {
 	return other instanceof Connection && ((Connection) other).ip.equals(ip);

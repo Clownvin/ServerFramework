@@ -25,7 +25,7 @@ public final class Main {
 	    boolean allFinished;
 	    do {
 		try {
-		    Thread.sleep(10);
+		    Thread.sleep(1);
 		} catch (InterruptedException e) {
 		    // Don't really care too much if it gets interrupted.
 		}
@@ -38,10 +38,10 @@ public final class Main {
 		}
 	    } while (!allFinished);
 	    long timeLeft = Config.TICK_DELAY - (System.currentTimeMillis() - start);
-	    tickTimes += (System.currentTimeMillis() - start); 
+	    tickTimes += (System.currentTimeMillis() - start);
 	    ticks++;
 	    if (ticks == 100) {
-		System.out.println("Average tick time over last 100 ticks: "+(tickTimes / ticks)+"ms.");
+		System.out.println("Average tick time over last 100 ticks: " + (tickTimes / ticks) + "ms.");
 		ticks = 0;
 		tickTimes = 0L;
 	    }
@@ -57,18 +57,23 @@ public final class Main {
 	}
 	System.out.println("Server going down...");
     }
-    
+
     public static void addTickReliant(final TickReliant tickReliant) {
 	synchronized (TICK_RELIANT_LIST) {
 	    TICK_RELIANT_LIST.add(tickReliant);
 	}
     }
-    
+
     public static Object getTickObject() {
 	return TICK_OBJECT;
     }
-    
+
     public static boolean isRunning() {
 	return running;
+    }
+
+    public static void requestExit() {
+	//For now we can just have it set running to false, but later on it should check to see which part failed, and recover if it can.
+	running = false;
     }
 }

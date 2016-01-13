@@ -49,11 +49,11 @@ public class LoginPacket extends Packet {
 	bytes[index] = '\n';
 	return bytes;
     }
-    
+
     public String getUsername() {
 	return username;
     }
-    
+
     public String getPassword() {
 	return password;
     }

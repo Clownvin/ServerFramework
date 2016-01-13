@@ -15,29 +15,41 @@ import com.git.cs309.mmoserver.util.TickReliant;
 public final class ConnectionManager extends Thread implements TickReliant {
     private static final ConnectionManager SINGLETON = new ConnectionManager();
     private static volatile boolean tickFinished = false;
-    private static final List<Connection> connections = new ArrayList<>();
+    private static final List<Connection> connections = new ArrayList<>(Config.MAX_CONNECTIONS);
     private static final Map<String, Connection> connectionMap = new HashMap<>(); // Can hold both username -> connection and ip -> connection.
-    
+
     private ConnectionManager() {
 	// Private so that this class can only be instantiated from within.
 	Main.addTickReliant(this);
 	this.start();
     }
-    
+
     public static ConnectionManager getSingleton() {
 	return SINGLETON;
     }
-    
+
+    public static boolean full() {
+	synchronized (connections) {
+	    return connections.size() == Config.MAX_CONNECTIONS;
+	}
+    }
+
+    public static boolean ipAlreadyConnected(String ip) {
+	synchronized (connectionMap) {
+	    return connectionMap.containsKey(ip);
+	}
+    }
+
     public static void addConnection(final Connection connection) {
 	synchronized (connectionMap) {
 	    connectionMap.put(connection.getIP(), connection);
 	}
 	synchronized (connections) {
 	    connections.add(connection);
-	    System.out.println("Connection joined: "+connection.getIP());
+	    System.out.println("Connection joined: " + connection.getIP());
 	}
     }
-    
+
     public static void sendPacketToAllConnections(final Packet packet) {
 	synchronized (connections) {
 	    for (Connection connection : connections) {
@@ -45,18 +57,37 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	    }
 	}
     }
-    
+
     public static Connection getConnectionForIP(final String ip) {
+	synchronized (connectionMap) {
+	    return connectionMap.get(ip);
+	}
+    }
+
+    public static Connection removeConnection(final String ip) {
+	synchronized (connectionMap) {
+	    connectionMap.remove(ip);
+	}
 	synchronized (connections) {
-	    for (Connection connection : connections) {
-		if (connection.getIP().equals(ip)) {
-		    return connection;
+	    for (int i = 0; i < connections.size(); i++) {
+		if (connections.get(i).getIP().equals(ip)) {
+		    return connections.remove(i);
 		}
 	    }
 	}
 	return null;
     }
-    
+
+    public static Connection removeConnection(final Connection connection) {
+	synchronized (connectionMap) {
+	    connectionMap.remove(connection.getIP());
+	}
+	synchronized (connections) {
+	    connections.remove(connection);
+	}
+	return connection;
+    }
+
     @Override
     public void run() {
 	final Object tickObject = Main.getTickObject();
@@ -70,8 +101,7 @@ public final class ConnectionManager extends Thread implements TickReliant {
 			packets.add(packet);
 		    }
 		    if (connections.get(i).isDisconnected()) {
-			connectionMap.remove(connections.get(i).getIP());
-			System.out.println("Connection disconnected: "+connections.remove(i--).getIP());
+			System.out.println("Connection disconnected: " + removeConnection(connections.get(i)).getIP());
 		    }
 		}
 	    }

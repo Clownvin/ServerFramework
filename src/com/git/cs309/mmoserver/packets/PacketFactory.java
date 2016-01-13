@@ -3,11 +3,11 @@ package com.git.cs309.mmoserver.packets;
 import com.git.cs309.mmoserver.connection.Connection;
 
 public final class PacketFactory {
-    
+
     private PacketFactory() {
 	// To prevent instantiation.
     }
-    
+
     public static Packet buildPacket(final byte[] bytes, final Connection source) {
 	switch (bytes[0]) { // First byte should ALWAYS be the type byte.
 	case 0: // Null packet
@@ -17,7 +17,7 @@ public final class PacketFactory {
 	case 2: // Login packet
 	    return new LoginPacket(bytes, source);
 	default:
-	    System.out.println("No case for type: "+bytes[0]);
+	    System.out.println("No case for type: " + bytes[0]);
 	    return null;
 	}
     }
