@@ -20,8 +20,6 @@ public abstract class Packet implements ByteFormatted {
 	return source;
     }
     
-    //Override this
-    public PacketType getPacketType() {
-	return PacketType.NULL_PACKET;
-    }
+    //Harharhar, forgot to make this abstract.
+    public abstract PacketType getPacketType();
 }
