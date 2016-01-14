@@ -42,10 +42,10 @@ public class LoginPacket extends Packet {
 
     @Override
     public byte[] toBytes() {
-	byte[] bytes = new byte[username.length() + password.length() + 9]; // 2xIntLengths + 1 byte identifier and '\n'
+	byte[] bytes = new byte[username.length() + password.length() + 9]; // 2xIntLengths + 1 byte identifier
 	int index = 0;
 	bytes[index++] = getPacketType().getTypeByte();
-	bytes[index++] = (byte) (username.length() >> 24); // Should only be these 4 words
+	bytes[index++] = (byte) (username.length() >> 24);
 	bytes[index++] = (byte) ((username.length() >> 16) & 0xFF);
 	bytes[index++] = (byte) ((username.length() >> 8) & 0xFF);
 	bytes[index++] = (byte) (username.length() & 0xFF);

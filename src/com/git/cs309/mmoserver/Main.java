@@ -37,8 +37,6 @@ public final class Main {
 	int ticks = 0;
 	long tickTimes = 0L;
 	while (running) {
-	    System.out.println();
-	    System.out.println("Ticking...");
 	    long start = System.currentTimeMillis();
 	    synchronized (TICK_OBJECT) {
 		TICK_OBJECT.notifyAll();

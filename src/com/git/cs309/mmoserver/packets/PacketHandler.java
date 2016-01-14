@@ -1,34 +1,11 @@
 package com.git.cs309.mmoserver.packets;
 
-import com.git.cs309.mmoserver.Main;
-import com.git.cs309.mmoserver.cycle.CycleProcess;
-import com.git.cs309.mmoserver.cycle.CycleProcessManager;
-
 public final class PacketHandler {
     public static void handlePacket(final Packet packet) {
 	switch (packet.getPacketType()) {
 	case MESSAGE_PACKET:
 	    System.out.println("Recieved message from connection \"" + packet.getConnection().getIP() + "\": "
 		    + ((MessagePacket) packet).getMessage());
-	    CycleProcessManager.addProcess(new CycleProcess() {
-		long startTick = Main.getTickCount();
-
-		@Override
-		public void end() {
-		    System.out.println("Ending process");
-		}
-
-		@Override
-		public boolean finished() {
-		    return Main.getTickCount() - startTick >= 5;
-		}
-
-		@Override
-		public void process() {
-		    System.out.println("Handling process");
-		}
-
-	    });
 	    break;
 	case LOGIN_PACKET:
 	    LoginPacket loginPacket = (LoginPacket) packet;

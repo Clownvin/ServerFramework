@@ -13,8 +13,8 @@ public class Client {
 
     //Just a basic client for various server/client interaction testing.
     public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
+	for (int i = 0; i < 2000; i++) {
 	Socket socket = new Socket("localhost", 6667);
-	Socket socket2 = new Socket("localhost", 6667);
 	LoginPacket loginPacket = new LoginPacket(null, "joke", "youare");
 	MessagePacket messagePacket = new MessagePacket(null, "This is a message packet.");
 	ErrorPacket errorPacket = new ErrorPacket(null, 1, "This is an error packet.");
@@ -26,16 +26,18 @@ public class Client {
 	byte[] invalidChecksum = new byte[] { 0xA, 0x0, 0x0, 0x0, 0x4, 0xF, 0xF, 0xF, 0xF };
 	socket.getOutputStream().write(randomBlock);
 	socket.getOutputStream().flush();
-	Thread.sleep(500);
+	Thread.sleep(110);
 	socket.getOutputStream().write(invalidChecksum);
 	socket.getOutputStream().flush();
-	Thread.sleep(1700);
+	Thread.sleep(110);
 	StreamUtils.writeBlockToStream(socket.getOutputStream(), loginPacket.toBytes());
-	Thread.sleep(1700);
+	Thread.sleep(110);
 	StreamUtils.writeBlockToStream(socket.getOutputStream(), messagePacket.toBytes());
-	Thread.sleep(1700);
+	Thread.sleep(110);
 	StreamUtils.writeBlockToStream(socket.getOutputStream(), errorPacket.toBytes());
 	socket.close();
+	Thread.sleep(1100);
+	}
     }
 
 }

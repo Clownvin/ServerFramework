@@ -34,7 +34,7 @@ public final class CycleProcessManager extends Thread implements TickReliant {
 	final Object tickObject = Main.getTickObject();
 	List<CycleProcess> removalList = new ArrayList<>();
 	while (Main.isRunning()) {
-	    //Obtain intrinsic lock
+	    tickFinished = false;
 	    synchronized (PROCESSES) {
 		for (CycleProcess process : PROCESSES) {
 		    process.process();
@@ -46,6 +46,7 @@ public final class CycleProcessManager extends Thread implements TickReliant {
 		PROCESSES.removeAll(removalList);
 	    }
 	    removalList.clear();
+	    tickFinished = true;
 	    synchronized (tickObject) {
 		try {
 		    tickObject.wait(); // Wait for tick notification.

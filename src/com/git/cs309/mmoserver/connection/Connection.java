@@ -70,7 +70,6 @@ public class Connection extends Thread {
 	return disconnected;
     }
 
-    //TODO Consider changing packet formats, so that first 4 bytes represent packet length. Will solve some potential issues.
     @Override
     public void run() {
 	int packetsThisTick;
