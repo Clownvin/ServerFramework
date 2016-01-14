@@ -18,6 +18,5 @@ public abstract class Packet implements ByteFormatted {
 	return source;
     }
 
-    //Harharhar, forgot to make this abstract.
     public abstract PacketType getPacketType();
 }

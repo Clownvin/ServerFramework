@@ -16,29 +16,7 @@ public final class ConnectionManager extends Thread implements TickReliant {
     private static final ConnectionManager SINGLETON = new ConnectionManager();
     private static volatile boolean tickFinished = false;
     private static final List<Connection> connections = new ArrayList<>(Config.MAX_CONNECTIONS);
-    private static final Map<String, Connection> connectionMap = new HashMap<>(); // Can hold both username -> connection and ip -> connection.
-
-    private ConnectionManager() {
-	// Private so that this class can only be instantiated from within.
-	Main.addTickReliant(this);
-	this.start();
-    }
-
-    public static ConnectionManager getSingleton() {
-	return SINGLETON;
-    }
-
-    public static boolean full() {
-	synchronized (connections) {
-	    return connections.size() == Config.MAX_CONNECTIONS;
-	}
-    }
-
-    public static boolean ipAlreadyConnected(String ip) {
-	synchronized (connectionMap) {
-	    return connectionMap.containsKey(ip);
-	}
-    }
+    private static final Map<String, Connection> connectionMap = new HashMap<>(); // Could hold both username -> connection and ip -> connection. But will probably only hold ip -> connection, since that's all that's needed.
 
     public static void addConnection(final Connection connection) {
 	synchronized (connectionMap) {
@@ -50,11 +28,9 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	}
     }
 
-    public static void sendPacketToAllConnections(final Packet packet) {
+    public static boolean full() {
 	synchronized (connections) {
-	    for (Connection connection : connections) {
-		connection.addOutgoingPacket(packet);
-	    }
+	    return connections.size() == Config.MAX_CONNECTIONS;
 	}
     }
 
@@ -62,6 +38,26 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	synchronized (connectionMap) {
 	    return connectionMap.get(ip);
 	}
+    }
+
+    public static ConnectionManager getSingleton() {
+	return SINGLETON;
+    }
+
+    public static boolean ipAlreadyConnected(String ip) {
+	synchronized (connectionMap) {
+	    return connectionMap.containsKey(ip);
+	}
+    }
+
+    public static Connection removeConnection(final Connection connection) {
+	synchronized (connectionMap) {
+	    connectionMap.remove(connection.getIP());
+	}
+	synchronized (connections) {
+	    connections.remove(connection);
+	}
+	return connection;
     }
 
     public static Connection removeConnection(final String ip) {
@@ -78,14 +74,18 @@ public final class ConnectionManager extends Thread implements TickReliant {
 	return null;
     }
 
-    public static Connection removeConnection(final Connection connection) {
-	synchronized (connectionMap) {
-	    connectionMap.remove(connection.getIP());
-	}
+    public static void sendPacketToAllConnections(final Packet packet) {
 	synchronized (connections) {
-	    connections.remove(connection);
+	    for (Connection connection : connections) {
+		connection.addOutgoingPacket(packet);
+	    }
 	}
-	return connection;
+    }
+
+    private ConnectionManager() {
+	// Private so that this class can only be instantiated from within.
+	Main.addTickReliant(this);
+	this.start();
     }
 
     @Override

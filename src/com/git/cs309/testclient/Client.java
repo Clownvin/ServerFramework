@@ -18,23 +18,23 @@ public class Client {
 	LoginPacket loginPacket = new LoginPacket(null, "joke", "youare");
 	MessagePacket messagePacket = new MessagePacket(null, "This is a message packet.");
 	ErrorPacket errorPacket = new ErrorPacket(null, 1, "This is an error packet.");
-	byte[] randomBlock = {0, 0, 52, 51, 32};
+	byte[] randomBlock = { 0, 0, 52, 51, 32 };
 	//			   	     1    {               2}  {               3}
 	//   1: Checksum
 	//   2: Length block
 	//   3: Data block
-	byte[] invalidChecksum = new byte[] {0xA, 0x0, 0x0, 0x0, 0x4, 0xF, 0xF, 0xF, 0xF};
+	byte[] invalidChecksum = new byte[] { 0xA, 0x0, 0x0, 0x0, 0x4, 0xF, 0xF, 0xF, 0xF };
 	socket.getOutputStream().write(randomBlock);
 	socket.getOutputStream().flush();
 	Thread.sleep(500);
 	socket.getOutputStream().write(invalidChecksum);
 	socket.getOutputStream().flush();
-	Thread.sleep(500);
-	    StreamUtils.writeBlockToStream(socket.getOutputStream(), loginPacket.toBytes());
-	    Thread.sleep(500);
-	    StreamUtils.writeBlockToStream(socket.getOutputStream(), messagePacket.toBytes());
-	    Thread.sleep(500);
-	    StreamUtils.writeBlockToStream(socket.getOutputStream(), errorPacket.toBytes());
+	Thread.sleep(1700);
+	StreamUtils.writeBlockToStream(socket.getOutputStream(), loginPacket.toBytes());
+	Thread.sleep(1700);
+	StreamUtils.writeBlockToStream(socket.getOutputStream(), messagePacket.toBytes());
+	Thread.sleep(1700);
+	StreamUtils.writeBlockToStream(socket.getOutputStream(), errorPacket.toBytes());
 	socket.close();
     }
 

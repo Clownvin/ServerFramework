@@ -3,7 +3,7 @@ package com.git.cs309.mmoserver.util;
 import java.io.IOException;
 
 public class EndOfStreamReachedException extends IOException {
-    
+
     /**
      * 
      */

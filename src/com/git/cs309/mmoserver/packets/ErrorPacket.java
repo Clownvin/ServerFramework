@@ -6,7 +6,7 @@ public class ErrorPacket extends Packet {
 
     private final int errorCode;
     private final String errorMessage;
-    
+
     public ErrorPacket(final byte[] bytes, final Connection source) {
 	super(source);
 	int index = 1;
@@ -17,19 +17,24 @@ public class ErrorPacket extends Packet {
 	}
 	errorMessage = buffer;
     }
-    
+
     public ErrorPacket(final Connection destination, final int errorCode, final String errorMessage) {
 	super(destination);
 	this.errorCode = errorCode;
 	this.errorMessage = errorMessage;
     }
-    
+
+    public int getErrorCode() {
+	return errorCode;
+    }
+
     public String getErrorMessage() {
 	return errorMessage;
     }
-    
-    public int getErrorCode() {
-	return errorCode;
+
+    @Override
+    public PacketType getPacketType() {
+	return PacketType.ERROR_PACKET;
     }
 
     @Override
@@ -45,11 +50,6 @@ public class ErrorPacket extends Packet {
 	    bytes[index++] = (byte) c;
 	}
 	return bytes;
-    }
-
-    @Override
-    public PacketType getPacketType() {
-	return PacketType.ERROR_PACKET;
     }
 
 }

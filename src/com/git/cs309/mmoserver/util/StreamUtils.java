@@ -7,23 +7,8 @@ import java.io.OutputStream;
 import com.git.cs309.mmoserver.Config;
 
 public final class StreamUtils {
-    private StreamUtils() {
-	// Since this is a static utility class, no need to instantiate
-    }
-    
-    public static void writeBlockToStream(final OutputStream output, final byte[] block) throws IOException {
-	byte[] lengthBytes = {(byte) ((block.length >> 24) & 0xFF), (byte) ((block.length >> 16) & 0xFF), (byte) ((block.length >> 8) & 0xFF), (byte) (block.length & 0xFF)};
-	int blockTotal = 0;
-	for (byte b : block) {
-	    blockTotal += b;
-	}
-	output.write((byte) (blockTotal % 0xF)); // Write checksum to stream.
-	output.write(lengthBytes);
-	output.write(block);
-	output.flush();
-    }
-    
-    public static byte[] readBlockFromStream(final InputStream input) throws EndOfStreamReachedException, IOException, CorruptDataException {
+    public static byte[] readBlockFromStream(final InputStream input)
+	    throws EndOfStreamReachedException, IOException, CorruptDataException {
 	byte checksum = (byte) input.read();
 	byte[] buffer = new byte[4];
 	int totalEOFChars = 0;
@@ -63,5 +48,22 @@ public final class StreamUtils {
 	    throw new CorruptDataException("Block read from stream was corrupt.");
 	}
 	return buffer;
+    }
+
+    public static void writeBlockToStream(final OutputStream output, final byte[] block) throws IOException {
+	byte[] lengthBytes = { (byte) ((block.length >> 24) & 0xFF), (byte) ((block.length >> 16) & 0xFF),
+		(byte) ((block.length >> 8) & 0xFF), (byte) (block.length & 0xFF) };
+	int blockTotal = 0;
+	for (byte b : block) {
+	    blockTotal += b;
+	}
+	output.write((byte) (blockTotal % 0xF)); // Write checksum to stream.
+	output.write(lengthBytes);
+	output.write(block);
+	output.flush();
+    }
+
+    private StreamUtils() {
+	// Since this is a static utility class, no need to instantiate
     }
 }

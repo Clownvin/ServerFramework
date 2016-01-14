@@ -9,10 +9,6 @@ public final class ConnectionAcceptor extends Thread {
     private static final ConnectionAcceptor SINGLETON = new ConnectionAcceptor();
     private static int port = 6667; // A default port.
 
-    private ConnectionAcceptor() {
-	// To prevent instantiation.
-    }
-
     public static ConnectionAcceptor getSingleton() {
 	return SINGLETON;
     }
@@ -20,6 +16,10 @@ public final class ConnectionAcceptor extends Thread {
     public static void startAcceptor(final int port) {
 	ConnectionAcceptor.port = port;
 	SINGLETON.start();
+    }
+
+    private ConnectionAcceptor() {
+	// To prevent instantiation.
     }
 
     @Override
@@ -43,7 +43,7 @@ public final class ConnectionAcceptor extends Thread {
 		    }
 		} catch (IOException e) {
 		    e.printStackTrace();
-		    System.err.println("Failed to accept new connection...");
+		    System.out.println("Failed to accept new connection...");
 		}
 	    }
 	}

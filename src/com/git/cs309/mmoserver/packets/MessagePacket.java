@@ -24,6 +24,11 @@ public class MessagePacket extends Packet {
     }
 
     @Override
+    public PacketType getPacketType() {
+	return PacketType.MESSAGE_PACKET;
+    }
+
+    @Override
     public byte[] toBytes() {
 	byte[] bytes = new byte[message.length() + 1];
 	int index = 0;
@@ -32,10 +37,5 @@ public class MessagePacket extends Packet {
 	    bytes[index++] = (byte) c;
 	}
 	return bytes;
-    }
-
-    @Override
-    public PacketType getPacketType() {
-	return PacketType.MESSAGE_PACKET;
     }
 }

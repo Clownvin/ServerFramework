@@ -10,6 +10,25 @@ public final class Main {
     private static volatile boolean running = false;
     private static final Object TICK_OBJECT = new Object(); // To notify threads of new tick.
     private static final List<TickReliant> TICK_RELIANT_LIST = new ArrayList<>();
+    private static volatile long tickCount = 0; // Tick count.
+
+    public static void addTickReliant(final TickReliant tickReliant) {
+	synchronized (TICK_RELIANT_LIST) {
+	    TICK_RELIANT_LIST.add(tickReliant);
+	}
+    }
+
+    public static long getTickCount() {
+	return tickCount;
+    }
+
+    public static Object getTickObject() {
+	return TICK_OBJECT;
+    }
+
+    public static boolean isRunning() {
+	return running;
+    }
 
     public static void main(String[] args) {
 	System.out.println("Starting server...");
@@ -18,6 +37,8 @@ public final class Main {
 	int ticks = 0;
 	long tickTimes = 0L;
 	while (running) {
+	    System.out.println();
+	    System.out.println("Ticking...");
 	    long start = System.currentTimeMillis();
 	    synchronized (TICK_OBJECT) {
 		TICK_OBJECT.notifyAll();
@@ -40,7 +61,8 @@ public final class Main {
 	    long timeLeft = Config.TICK_DELAY - (System.currentTimeMillis() - start);
 	    tickTimes += (System.currentTimeMillis() - start);
 	    ticks++;
-	    if (ticks == 750) {
+	    tickCount++;
+	    if (ticks == 750) { // 5min / 400ms = 750 ticks
 		System.out.println("Average tick time over last 5 minutes: " + (tickTimes / ticks) + "ms.");
 		ticks = 0;
 		tickTimes = 0L;
@@ -56,20 +78,6 @@ public final class Main {
 	    }
 	}
 	System.out.println("Server going down...");
-    }
-
-    public static void addTickReliant(final TickReliant tickReliant) {
-	synchronized (TICK_RELIANT_LIST) {
-	    TICK_RELIANT_LIST.add(tickReliant);
-	}
-    }
-
-    public static Object getTickObject() {
-	return TICK_OBJECT;
-    }
-
-    public static boolean isRunning() {
-	return running;
     }
 
     public static void requestExit() {

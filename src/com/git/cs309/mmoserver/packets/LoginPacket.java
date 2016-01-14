@@ -28,6 +28,19 @@ public class LoginPacket extends Packet {
     }
 
     @Override
+    public PacketType getPacketType() {
+	return PacketType.LOGIN_PACKET;
+    }
+
+    public String getPassword() {
+	return password;
+    }
+
+    public String getUsername() {
+	return username;
+    }
+
+    @Override
     public byte[] toBytes() {
 	byte[] bytes = new byte[username.length() + password.length() + 9]; // 2xIntLengths + 1 byte identifier and '\n'
 	int index = 0;
@@ -47,19 +60,6 @@ public class LoginPacket extends Packet {
 	    bytes[index++] = (byte) c;
 	}
 	return bytes;
-    }
-
-    public String getUsername() {
-	return username;
-    }
-
-    public String getPassword() {
-	return password;
-    }
-
-    @Override
-    public PacketType getPacketType() {
-	return PacketType.LOGIN_PACKET;
     }
 
 }

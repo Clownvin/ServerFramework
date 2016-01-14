@@ -34,6 +34,42 @@ public class Connection extends Thread {
 	this.start();
     }
 
+    public void addOutgoingPacket(Packet packet) {
+	outgoingPackets.add(packet);
+    }
+
+    public synchronized void close() {
+	try {
+	    if (input != null)
+		input.close();
+	    if (output != null)
+		output.close();
+	    if (socket != null)
+		socket.close();
+	} catch (IOException e) {
+	    e.printStackTrace();
+	}
+	logoutRequested = true;
+    }
+
+    @Override
+    public boolean equals(Object other) {
+	return other instanceof Connection && ((Connection) other).ip.equals(ip);
+    }
+
+    public String getIP() {
+	return ip;
+    }
+
+    //Since packet is volatile, shouldn't need synchronized method block.
+    public Packet getPacket() {
+	return packet;
+    }
+
+    public boolean isDisconnected() {
+	return disconnected;
+    }
+
     //TODO Consider changing packet formats, so that first 4 bytes represent packet length. Will solve some potential issues.
     @Override
     public void run() {
@@ -71,7 +107,8 @@ public class Connection extends Thread {
 			System.err.println(e.getMessage());
 		    }
 		    if (++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
-			System.out.println(this+" exceeded the maximum packets per tick limit. Packets: "+packetsThisTick);
+			System.out.println(
+				this + " exceeded the maximum packets per tick limit. Packets: " + packetsThisTick);
 			logoutRequested = true;
 			break;
 		    }
@@ -84,44 +121,8 @@ public class Connection extends Thread {
 	disconnected = true;
     }
 
-    public void close() {
-	try {
-	    if (input != null)
-		input.close();
-	    if (output != null)
-		output.close();
-	    if (socket != null)
-		socket.close();
-	} catch (IOException e) {
-	    e.printStackTrace();
-	}
-	logoutRequested = true;
-    }
-
-    public void addOutgoingPacket(Packet packet) {
-	outgoingPackets.add(packet);
-    }
-
-    //Since packet is volatile, shouldn't need synchronized method block.
-    public Packet getPacket() {
-	return packet;
-    }
-
-    public boolean isDisconnected() {
-	return disconnected;
-    }
-
-    public String getIP() {
-	return ip;
-    }
-
     @Override
     public String toString() {
 	return "Connection:" + ip;
-    }
-
-    @Override
-    public boolean equals(Object other) {
-	return other instanceof Connection && ((Connection) other).ip.equals(ip);
     }
 }

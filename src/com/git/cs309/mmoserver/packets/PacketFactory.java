@@ -4,10 +4,6 @@ import com.git.cs309.mmoserver.connection.Connection;
 
 public final class PacketFactory {
 
-    private PacketFactory() {
-	// To prevent instantiation.
-    }
-
     public static Packet buildPacket(final byte[] bytes, final Connection source) {
 	switch (bytes[0]) { // First byte should ALWAYS be the type byte.
 	case 0: // Null packet
@@ -22,5 +18,9 @@ public final class PacketFactory {
 	    System.out.println("No case for type: " + bytes[0]);
 	    return null;
 	}
+    }
+
+    private PacketFactory() {
+	// To prevent instantiation.
     }
 }
