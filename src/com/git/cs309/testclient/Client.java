@@ -4,32 +4,37 @@ import java.io.IOException;
 import java.net.Socket;
 import java.net.UnknownHostException;
 
+import com.git.cs309.mmoserver.packets.ErrorPacket;
 import com.git.cs309.mmoserver.packets.LoginPacket;
+import com.git.cs309.mmoserver.packets.MessagePacket;
+import com.git.cs309.mmoserver.util.StreamUtils;
 
 public class Client {
 
-    //This demonstrates the server's function of ignoring all but the last packet per tick.
-    //The message packet "Hello, World!" will be ignored entirely, while the login packet will be processed.
-    //Not sending the login packet will make server process message packet instead. Sending them with a delay between will also
-    //Cause them both to be processed.
+    //Just a basic client for various server/client interaction testing.
     public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
 	Socket socket = new Socket("localhost", 6667);
-	String message = "Hello, world!";
-	byte[] bytes = new byte[message.length() + 2];
-	int index = 0;
-	bytes[index++] = (byte) 1;
-	for (char c : message.toCharArray()) {
-	    bytes[index++] = (byte) c;
-	}
-	bytes[index] = '\n';
-	socket.getOutputStream().write(bytes);
-	socket.getOutputStream().flush();
+	Socket socket2 = new Socket("localhost", 6667);
 	LoginPacket loginPacket = new LoginPacket(null, "joke", "youare");
-	for (int i = 0; i < 4000; i++) {
-	    Thread.sleep(400 / 5);
-	    socket.getOutputStream().write(loginPacket.toBytes());
-	    socket.getOutputStream().flush();
-	}
+	MessagePacket messagePacket = new MessagePacket(null, "This is a message packet.");
+	ErrorPacket errorPacket = new ErrorPacket(null, 1, "This is an error packet.");
+	byte[] randomBlock = {0, 0, 52, 51, 32};
+	//			   	     1    {               2}  {               3}
+	//   1: Checksum
+	//   2: Length block
+	//   3: Data block
+	byte[] invalidChecksum = new byte[] {0xA, 0x0, 0x0, 0x0, 0x4, 0xF, 0xF, 0xF, 0xF};
+	socket.getOutputStream().write(randomBlock);
+	socket.getOutputStream().flush();
+	Thread.sleep(500);
+	socket.getOutputStream().write(invalidChecksum);
+	socket.getOutputStream().flush();
+	Thread.sleep(500);
+	    StreamUtils.writeBlockToStream(socket.getOutputStream(), loginPacket.toBytes());
+	    Thread.sleep(500);
+	    StreamUtils.writeBlockToStream(socket.getOutputStream(), messagePacket.toBytes());
+	    Thread.sleep(500);
+	    StreamUtils.writeBlockToStream(socket.getOutputStream(), errorPacket.toBytes());
 	socket.close();
     }
 

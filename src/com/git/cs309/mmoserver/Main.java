@@ -40,8 +40,8 @@ public final class Main {
 	    long timeLeft = Config.TICK_DELAY - (System.currentTimeMillis() - start);
 	    tickTimes += (System.currentTimeMillis() - start);
 	    ticks++;
-	    if (ticks == 100) {
-		System.out.println("Average tick time over last 100 ticks: " + (tickTimes / ticks) + "ms.");
+	    if (ticks == 750) {
+		System.out.println("Average tick time over last 5 minutes: " + (tickTimes / ticks) + "ms.");
 		ticks = 0;
 		tickTimes = 0L;
 	    }

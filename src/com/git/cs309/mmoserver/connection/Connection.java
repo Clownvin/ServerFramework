@@ -5,12 +5,14 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.packets.Packet;
 import com.git.cs309.mmoserver.packets.PacketFactory;
+import com.git.cs309.mmoserver.util.CorruptDataException;
+import com.git.cs309.mmoserver.util.EndOfStreamReachedException;
+import com.git.cs309.mmoserver.util.StreamUtils;
 
 public class Connection extends Thread {
     private final OutputStream output;
@@ -35,12 +37,10 @@ public class Connection extends Thread {
     //TODO Consider changing packet formats, so that first 4 bytes represent packet length. Will solve some potential issues.
     @Override
     public void run() {
-	byte[] buffer;
-	int bufferIndex = 0;
-	int packetsThisTick = 0;
-	boolean success = true;
+	int packetsThisTick;
+	//ConnectionManager singleton to wait on.
 	final ConnectionManager connectionManager = ConnectionManager.getSingleton();
-	while (socket.isConnected() && !logoutRequested) {
+	while (!socket.isClosed() && !logoutRequested) {
 	    synchronized (connectionManager) {
 		try {
 		    connectionManager.wait(); // Wait for connection manager to notify us of new tick.
@@ -50,7 +50,7 @@ public class Connection extends Thread {
 	    }
 	    while (outgoingPackets.size() > 0) {
 		try {
-		    output.write(outgoingPackets.remove(0).toBytes());
+		    StreamUtils.writeBlockToStream(output, outgoingPackets.remove(0).toBytes());
 		} catch (IOException e) {
 		    e.printStackTrace();
 		}
@@ -59,37 +59,23 @@ public class Connection extends Thread {
 	    packetsThisTick = 0;
 	    try {
 		do {
-		    success = true;
-		    bufferIndex = 0;
-		    buffer = new byte[Config.MAX_PACKET_BYTES];
-		    int packetLength = 2;
-		    if ((buffer[bufferIndex++] = (byte) input.read()) == -1) { // We're getting EOF character.
-			int count = 0;
-			packetLength++;
-			while ((buffer[bufferIndex++] = (byte) input.read()) == -1) {
-			    packetLength++;
-			    if (count++ == 20) {
-				logoutRequested = true;
-				success = false;
-				break;
-			    }
-			}
+		    try {
+			packet = PacketFactory.buildPacket(StreamUtils.readBlockFromStream(input), this);
+		    } catch (CorruptDataException e) {
+			System.err.println(e.getMessage());
+		    } catch (EndOfStreamReachedException e) {
+			System.err.println(e.getMessage());
+			logoutRequested = true;
+			break;
+		    } catch (IOException e) {
+			System.err.println(e.getMessage());
 		    }
-		    while (success && (buffer[bufferIndex++] = (byte) input.read()) != '\n') {
-			packetLength++;
-			if (bufferIndex == buffer.length) {
-			    success = false;
-			}
-		    }
-		    if (success) {
-			packetsThisTick++;
-			packet = PacketFactory.buildPacket(Arrays.copyOfRange(buffer, 0, packetLength), this);
-		    }
-		    if (packetsThisTick > Config.PACKETS_PER_TICK_BEFORE_KICK) {
+		    if (++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
+			System.out.println(this+" exceeded the maximum packets per tick limit. Packets: "+packetsThisTick);
 			logoutRequested = true;
 			break;
 		    }
-		} while (input.available() != 0 && !logoutRequested);
+		} while (!socket.isClosed() && input.available() != 0 && !logoutRequested);
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }

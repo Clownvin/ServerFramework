@@ -7,14 +7,14 @@ public class MessagePacket extends Packet {
 
     public MessagePacket(final byte[] buffer, final Connection source) {
 	super(source);
-	char[] chars = new char[buffer.length - 2];
-	for (int i = 1, j = 0; i < buffer.length - 1; i++, j++) {
+	char[] chars = new char[buffer.length - 1];
+	for (int i = 1, j = 0; i < buffer.length; i++, j++) {
 	    chars[j] = (char) buffer[i];
 	}
 	message = String.valueOf(chars);
     }
 
-    public MessagePacket(final String message, final Connection destination) {
+    public MessagePacket(final Connection destination, final String message) {
 	super(destination);
 	this.message = message;
     }
@@ -25,13 +25,12 @@ public class MessagePacket extends Packet {
 
     @Override
     public byte[] toBytes() {
-	byte[] bytes = new byte[message.length() + 2];
+	byte[] bytes = new byte[message.length() + 1];
 	int index = 0;
 	bytes[index++] = getPacketType().getTypeByte();
 	for (char c : message.toCharArray()) {
 	    bytes[index++] = (byte) c;
 	}
-	bytes[index] = '\n';
 	return bytes;
     }
 

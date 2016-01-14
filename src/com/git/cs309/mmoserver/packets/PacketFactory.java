@@ -16,6 +16,8 @@ public final class PacketFactory {
 	    return new MessagePacket(bytes, source);
 	case 2: // Login packet
 	    return new LoginPacket(bytes, source);
+	case 3: // Error packet
+	    return new ErrorPacket(bytes, source);
 	default:
 	    System.out.println("No case for type: " + bytes[0]);
 	    return null;
