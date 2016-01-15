@@ -31,6 +31,7 @@ public class Connection extends Thread {
 	this.input = socket.getInputStream();
 	this.socket = socket;
 	this.ip = socket.getInetAddress().getHostAddress();
+	this.setName(this.toString());
 	this.start();
     }
 
@@ -122,6 +123,6 @@ public class Connection extends Thread {
 
     @Override
     public String toString() {
-	return "Connection:" + ip;
+	return "Connection: " + ip;
     }
 }

@@ -7,7 +7,7 @@ public final class Config {
     public static final int MAX_PACKET_BYTES = 1000;
 
     //Max packets/tick before automatically closes connection.
-    public static final int PACKETS_PER_TICK_BEFORE_KICK = 10000;
+    public static final int PACKETS_PER_TICK_BEFORE_KICK = 30;
 
     //Desired tick delay
     public static final long TICK_DELAY = 100; // 100MS (runescape runs around 575MS/tick)

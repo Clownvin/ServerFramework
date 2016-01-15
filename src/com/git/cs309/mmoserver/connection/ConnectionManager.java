@@ -85,6 +85,7 @@ public final class ConnectionManager extends Thread implements TickReliant {
     private ConnectionManager() {
 	// Private so that this class can only be instantiated from within.
 	Main.addTickReliant(this);
+	this.setName("ConnectionManager");
 	this.start();
     }
 

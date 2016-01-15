@@ -26,6 +26,7 @@ public final class CycleProcessManager extends Thread implements TickReliant {
     //Private so that only this class can access constructor.
     private CycleProcessManager() {
 	Main.addTickReliant(this);
+	this.setName("CycleProcessManager");
 	this.start();
     }
 

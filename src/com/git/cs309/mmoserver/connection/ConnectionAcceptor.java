@@ -19,7 +19,7 @@ public final class ConnectionAcceptor extends Thread {
     }
 
     private ConnectionAcceptor() {
-	// To prevent instantiation.
+	this.setName("ConnectionAcceptor");
     }
 
     @Override
