@@ -4,6 +4,8 @@ import com.git.cs309.mmoserver.connection.Connection;
 
 public class ErrorPacket extends Packet {
 
+    public static final int GENERAL_ERROR = 1;
+    public static final int LOGIN_ERROR = 2;
     private final int errorCode;
     private final String errorMessage;
 

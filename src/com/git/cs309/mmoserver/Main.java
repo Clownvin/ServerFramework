@@ -60,8 +60,8 @@ public final class Main {
 	    tickTimes += (System.currentTimeMillis() - start);
 	    ticks++;
 	    tickCount++;
-	    if (ticks == 750) { // 5min / 400ms = 750 ticks
-		System.out.println("Average tick time over last 5 minutes: " + (tickTimes / ticks) + "ms.");
+	    if (ticks == Config.TICKS_PER_AUTO_SAVE) { // 5min / 400ms = 750 ticks
+		System.out.println("Average tick time since last autosave: " + (tickTimes / ticks) + "ms.");
 		ticks = 0;
 		tickTimes = 0L;
 	    }

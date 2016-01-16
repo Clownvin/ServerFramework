@@ -10,6 +10,8 @@ import java.util.List;
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.packets.Packet;
 import com.git.cs309.mmoserver.packets.PacketFactory;
+import com.git.cs309.mmoserver.user.User;
+import com.git.cs309.mmoserver.user.UserManager;
 import com.git.cs309.mmoserver.util.CorruptDataException;
 import com.git.cs309.mmoserver.util.EndOfStreamReachedException;
 import com.git.cs309.mmoserver.util.StreamUtils;
@@ -19,7 +21,7 @@ public class Connection extends Thread {
     private final InputStream input;
     private final Socket socket;
     private final String ip;
-    private volatile boolean logoutRequested = false;
+    private volatile boolean closeRequested = false;
     private volatile boolean disconnected = false;
     private volatile Packet packet; // Making this volatile should allow for other threads to access it properly, as well as be changed by this thread properly.
     private volatile List<Packet> outgoingPackets = new ArrayList<>(10);
@@ -50,7 +52,7 @@ public class Connection extends Thread {
 	} catch (IOException e) {
 	    e.printStackTrace();
 	}
-	logoutRequested = true;
+	closeRequested = true;
     }
 
     @Override
@@ -76,7 +78,7 @@ public class Connection extends Thread {
 	int packetsThisTick;
 	//ConnectionManager singleton to wait on.
 	final ConnectionManager connectionManager = ConnectionManager.getSingleton();
-	while (!socket.isClosed() && !logoutRequested) {
+	while (!socket.isClosed() && !closeRequested) {
 	    synchronized (connectionManager) {
 		try {
 		    connectionManager.wait(); // Wait for connection manager to notify us of new tick.
@@ -101,7 +103,7 @@ public class Connection extends Thread {
 			System.err.println(e.getMessage());
 		    } catch (EndOfStreamReachedException e) {
 			System.err.println(e.getMessage());
-			logoutRequested = true;
+			closeRequested = true;
 			break;
 		    } catch (IOException e) {
 			System.err.println(e.getMessage());
@@ -109,13 +111,21 @@ public class Connection extends Thread {
 		    if (++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
 			System.out.println(
 				this + " exceeded the maximum packets per tick limit. Packets: " + packetsThisTick);
-			logoutRequested = true;
+			closeRequested = true;
 			break;
 		    }
-		} while (!socket.isClosed() && input.available() != 0 && !logoutRequested);
+		} while (!socket.isClosed() && input.available() != 0 && !closeRequested);
 	    } catch (IOException e) {
 		e.printStackTrace();
 	    }
+	}
+	try {
+	    sleep(Config.TICK_DELAY); // Sleeping to ensure that managers are up to date.
+	} catch (InterruptedException e) {
+	}
+	User user = UserManager.getUserForIP(ip);
+	if (user != null) {
+	    UserManager.logOut(user.getUsername());
 	}
 	close();
 	disconnected = true;

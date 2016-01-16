@@ -1,5 +1,9 @@
 package com.git.cs309.mmoserver.packets;
 
+import com.git.cs309.mmoserver.user.InvalidPasswordException;
+import com.git.cs309.mmoserver.user.UserAlreadyLoggedInException;
+import com.git.cs309.mmoserver.user.UserManager;
+
 public final class PacketHandler {
     public static void handlePacket(final Packet packet) {
 	switch (packet.getPacketType()) {
@@ -9,9 +13,23 @@ public final class PacketHandler {
 	    break;
 	case LOGIN_PACKET:
 	    LoginPacket loginPacket = (LoginPacket) packet;
-	    System.out.println("Recieved login from connection \"" + packet.getConnection().getIP() + "\".");
-	    System.out.println("Username: " + loginPacket.getUsername());
-	    System.out.println("Password: " + loginPacket.getPassword());
+	    try {
+		if (!UserManager.logIn(loginPacket)) {
+		    System.err.println("Failed to log in user \"" + loginPacket.getUsername() + "\".");
+		    loginPacket.getConnection().addOutgoingPacket(
+			    new ErrorPacket(loginPacket.getConnection(), ErrorPacket.LOGIN_ERROR, "Login failed."));
+		}
+	    } catch (UserAlreadyLoggedInException e) {
+		System.err.println(e.getMessage());
+		loginPacket.getConnection()
+			.addOutgoingPacket(new ErrorPacket(loginPacket.getConnection(), ErrorPacket.LOGIN_ERROR,
+				"User with username \"" + loginPacket.getUsername() + "\" is already logged in."));
+	    } catch (InvalidPasswordException e) {
+		System.err.println(e.getMessage());
+		loginPacket.getConnection()
+			.addOutgoingPacket(new ErrorPacket(loginPacket.getConnection(), ErrorPacket.LOGIN_ERROR,
+				"Password for user \"" + loginPacket.getUsername() + "\" does not match."));
+	    }
 	    break;
 	case ERROR_PACKET:
 	    ErrorPacket errorPacket = (ErrorPacket) packet;

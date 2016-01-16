@@ -11,6 +11,7 @@ import com.git.cs309.mmoserver.util.TickReliant;
 public final class CycleProcessManager extends Thread implements TickReliant {
     private static final CycleProcessManager SINGLETON = new CycleProcessManager();
     private static final Set<CycleProcess> PROCESSES = new HashSet<>();
+
     public static void addProcess(final CycleProcess process) {
 	synchronized (PROCESSES) {
 	    PROCESSES.add(process);
