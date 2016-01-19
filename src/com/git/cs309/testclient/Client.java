@@ -9,25 +9,25 @@ import com.git.cs309.mmoserver.packets.MessagePacket;
 import com.git.cs309.mmoserver.util.StreamUtils;
 
 public class Client {
-    //Just a basic client for various server/client interaction testing.
-    public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
-	Client client = new Client();
-    }
-
-    private final Socket socket;
-
-    private Client() throws UnknownHostException, IOException, InterruptedException {
-	socket = new Socket("localhost", 6667);
-	//while (true) {
-	LoginPacket packet = new LoginPacket(null, "Clowbn", "Clown");
-	StreamUtils.writeBlockToStream(socket.getOutputStream(), packet.toBytes());
-	Thread.sleep(500);
-	while (true) {
-	    StreamUtils.writeBlockToStream(socket.getOutputStream(), new MessagePacket(null, "Lol....").toBytes());
-	    Thread.sleep(5000);
+	//Just a basic client for various server/client interaction testing.
+	public static void main(String[] args) throws UnknownHostException, IOException, InterruptedException {
+		Client client = new Client();
 	}
-	//}
 
-    }
+	private final Socket socket;
+
+	private Client() throws UnknownHostException, IOException, InterruptedException {
+		socket = new Socket("localhost", 6667);
+		//while (true) {
+		LoginPacket packet = new LoginPacket(null, "Clowbn", "Clown");
+		StreamUtils.writeBlockToStream(socket.getOutputStream(), packet.toBytes());
+		Thread.sleep(500);
+		while (true) {
+			StreamUtils.writeBlockToStream(socket.getOutputStream(), new MessagePacket(null, "Lol....").toBytes());
+			Thread.sleep(5000);
+		}
+		//}
+
+	}
 
 }
