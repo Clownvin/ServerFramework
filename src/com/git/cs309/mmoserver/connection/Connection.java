@@ -31,7 +31,11 @@ public class Connection extends AbstractConnection {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		disconnected = true;
 		closeRequested = true;
+		synchronized (outgoingPackets) {
+			outgoingPackets.notifyAll();
+		}
 	}
 
 	@Override
@@ -45,13 +49,6 @@ public class Connection extends AbstractConnection {
 					connectionManager.wait(); // Wait for connection manager to notify us of new tick.
 				} catch (InterruptedException e) {
 					// We shouldn't care too much if it gets interrupted.
-				}
-			}
-			while (outgoingPackets.size() > 0) {
-				try {
-					StreamUtils.writeBlockToStream(output, outgoingPackets.remove(0).toBytes());
-				} catch (IOException e) {
-					e.printStackTrace();
 				}
 			}
 			packet = null;

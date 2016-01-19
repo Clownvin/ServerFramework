@@ -18,6 +18,8 @@ public final class PacketHandler {
 					System.err.println("Failed to log in user \"" + loginPacket.getUsername() + "\".");
 					loginPacket.getConnection().addOutgoingPacket(
 							new ErrorPacket(loginPacket.getConnection(), ErrorPacket.LOGIN_ERROR, "Login failed."));
+				} else {
+					loginPacket.getConnection().addOutgoingPacket(new EventPacket(loginPacket.getConnection(), EventPacket.LOGIN_SUCCESS));
 				}
 			} catch (UserAlreadyLoggedInException e) {
 				System.err.println(e.getMessage());

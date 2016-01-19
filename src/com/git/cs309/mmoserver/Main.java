@@ -73,7 +73,7 @@ public final class Main {
 				ticks = 0;
 				tickTimes = 0L;
 			}
-			if (timeLeft < 1) {
+			if (timeLeft < 0) {
 				System.err.println("Warning: Server is lagging behind desired tick time " + (-timeLeft) + "ms.");
 			} else {
 				try {
