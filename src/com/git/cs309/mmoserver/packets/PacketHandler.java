@@ -1,8 +1,8 @@
 package com.git.cs309.mmoserver.packets;
 
-import com.git.cs309.mmoserver.user.InvalidPasswordException;
-import com.git.cs309.mmoserver.user.UserAlreadyLoggedInException;
-import com.git.cs309.mmoserver.user.UserManager;
+import com.git.cs309.mmoserver.characters.user.InvalidPasswordException;
+import com.git.cs309.mmoserver.characters.user.UserAlreadyLoggedInException;
+import com.git.cs309.mmoserver.characters.user.UserManager;
 
 public final class PacketHandler {
 	public static void handlePacket(final Packet packet) {

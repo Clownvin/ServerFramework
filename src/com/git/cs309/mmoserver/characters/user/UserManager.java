@@ -1,4 +1,4 @@
-package com.git.cs309.mmoserver.user;
+package com.git.cs309.mmoserver.characters.user;
 
 import java.io.File;
 import java.io.FileInputStream;

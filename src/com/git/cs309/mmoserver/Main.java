@@ -3,8 +3,8 @@ package com.git.cs309.mmoserver;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.connection.ConnectionAcceptor;
-import com.git.cs309.mmoserver.user.UserManager;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class Main {

@@ -1,10 +1,11 @@
-package com.git.cs309.mmoserver.user;
+package com.git.cs309.mmoserver.characters.user;
 
 import java.io.Serializable;
 
+import com.git.cs309.mmoserver.characters.Character;
 import com.git.cs309.mmoserver.connection.AbstractConnection;
 
-public final class User implements Serializable {
+public final class User extends Character implements Serializable {
 
 	/**
 	 * 

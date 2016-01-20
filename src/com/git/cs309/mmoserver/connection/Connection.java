@@ -4,9 +4,9 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.git.cs309.mmoserver.Config;
+import com.git.cs309.mmoserver.characters.user.User;
+import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.packets.PacketFactory;
-import com.git.cs309.mmoserver.user.User;
-import com.git.cs309.mmoserver.user.UserManager;
 import com.git.cs309.mmoserver.util.CorruptDataException;
 import com.git.cs309.mmoserver.util.EndOfStreamReachedException;
 import com.git.cs309.mmoserver.util.StreamUtils;
