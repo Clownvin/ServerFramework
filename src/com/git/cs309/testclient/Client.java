@@ -23,7 +23,7 @@ public class Client {
 		StreamUtils.writeBlockToStream(socket.getOutputStream(), packet.toBytes());
 		Thread.sleep(500);
 		while (true) {
-			StreamUtils.writeBlockToStream(socket.getOutputStream(), new MessagePacket(null, "Lol....").toBytes());
+			StreamUtils.writeBlockToStream(socket.getOutputStream(), new MessagePacket(null, (byte) 0, "Lol....").toBytes());
 			Thread.sleep(5000);
 		}
 		//}
