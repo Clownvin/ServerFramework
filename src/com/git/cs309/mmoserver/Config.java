@@ -2,7 +2,7 @@ package com.git.cs309.mmoserver;
 
 public final class Config {
 	//This class is just temporary storage for configuration stuff, like maxes and mins
-
+//hi
 	//Max bytes per packet.
 	public static final int MAX_PACKET_BYTES = 1000;
 
