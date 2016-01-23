@@ -6,6 +6,7 @@ import java.net.UnknownHostException;
 
 import com.git.cs309.mmoserver.packets.LoginPacket;
 import com.git.cs309.mmoserver.packets.MessagePacket;
+import com.git.cs309.mmoserver.util.CycleArrayList;
 import com.git.cs309.mmoserver.util.StreamUtils;
 
 public class Client {

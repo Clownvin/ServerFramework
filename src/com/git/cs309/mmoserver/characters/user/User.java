@@ -2,6 +2,7 @@ package com.git.cs309.mmoserver.characters.user;
 
 import java.io.Serializable;
 
+import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.characters.Character;
 import com.git.cs309.mmoserver.connection.AbstractConnection;
 
@@ -17,6 +18,7 @@ public final class User extends Character implements Serializable {
 	private transient AbstractConnection connection; // Transient means serialization will ignore this variable.
 
 	public User(final String username, final String password) {
+		super (Config.PLAYER_START_X, Config.PLAYER_START_Y);
 		this.username = username;
 		this.password = password;
 	}
