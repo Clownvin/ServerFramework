@@ -68,6 +68,11 @@ public final class UserManager {
 		});
 	}
 
+	private static void addUserToTables(final User user) {
+		USER_TABLE.put(user.getUsername().toLowerCase(), user);
+		IP_TABLE.put(user.getConnection().getIP(), user);
+	}
+
 	public static File getUserFile(final String username) {
 		return new File(Config.USER_FILE_PATH + username.toLowerCase() + ".user");
 	}
@@ -116,13 +121,11 @@ public final class UserManager {
 						+ user.getUsername() + "\".");
 			}
 			user.setConnection(loginPacket.getConnection());
-			USER_TABLE.put(user.getUsername().toLowerCase(), user);
-			IP_TABLE.put(loginPacket.getConnection().getIP(), user);
+			addUserToTables(user);
 		} else {
 			user = new User(loginPacket.getUsername(), loginPacket.getPassword());
 			user.setConnection(loginPacket.getConnection());
-			USER_TABLE.put(user.getUsername().toLowerCase(), user);
-			IP_TABLE.put(loginPacket.getConnection().getIP(), user);
+			addUserToTables(user);
 		}
 		user.setIDTag(ClosedIDSystem.getTag());
 		System.out.println("User " + user + " logged in.");
@@ -131,17 +134,22 @@ public final class UserManager {
 
 	public static boolean logOut(final String username) {
 		if (isLoggedIn(username)) {
+			User user = USER_TABLE.get(username.toLowerCase());
 			try {
-				saveUser(USER_TABLE.get(username.toLowerCase()));
+				saveUser(user);
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-			User user = USER_TABLE.remove(username.toLowerCase());
-			IP_TABLE.remove(user.getConnection().getIP());
+			removeUserFromTables(user);
 			System.out.println("User " + user + " logged out.");
 			user.cleanUp();
 		}
 		return true;
+	}
+
+	private static void removeUserFromTables(final User user) {
+		USER_TABLE.remove(user);
+		IP_TABLE.remove(user.getConnection().getIP());
 	}
 
 	public static void saveAllUsers() {

@@ -6,8 +6,9 @@ import java.net.ServerSocket;
 import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.packets.ErrorPacket;
 
-public final class ConnectionAcceptor extends Thread {
+public final class ConnectionAcceptor implements Runnable {
 	private static final ConnectionAcceptor SINGLETON = new ConnectionAcceptor();
+	private static Thread connectionAcceptorThread;
 	private static int port = 6667; // A default port.
 
 	public static ConnectionAcceptor getSingleton() {
@@ -16,11 +17,12 @@ public final class ConnectionAcceptor extends Thread {
 
 	public static void startAcceptor(final int port) {
 		ConnectionAcceptor.port = port;
-		SINGLETON.start();
+		connectionAcceptorThread.start();
 	}
 
 	private ConnectionAcceptor() {
-		this.setName("ConnectionAcceptor");
+		connectionAcceptorThread = new Thread(SINGLETON);
+		connectionAcceptorThread.setName("ConnectionAcceptor");
 	}
 
 	@Override

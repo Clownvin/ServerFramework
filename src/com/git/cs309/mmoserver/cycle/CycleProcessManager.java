@@ -33,24 +33,31 @@ public final class CycleProcessManager extends Observable implements TickReliant
 		cycleProcessManagerThread.start();
 	}
 
+	private synchronized void processAllProcesses() {
+		List<CycleProcess> removalList = new ArrayList<>();
+		synchronized (PROCESSES) {
+			for (CycleProcess process : PROCESSES) {
+				process.process();
+				if (process.finished()) {
+					process.end();
+					removalList.add(process);
+				}
+			}
+			PROCESSES.removeAll(removalList);
+		}
+	}
+
 	@Override
 	public void run() {
 		final Object tickObject = Main.getTickObject();
-		List<CycleProcess> removalList = new ArrayList<>();
 		while (Main.isRunning()) {
 			tickFinished = false;
-			synchronized (PROCESSES) {
-				for (CycleProcess process : PROCESSES) {
-					process.process();
-					if (process.finished()) {
-						process.end();
-						removalList.add(process);
-					}
-				}
-				PROCESSES.removeAll(removalList);
-			}
-			removalList.clear();
+			setChanged();
+			notifyObservers();
+			processAllProcesses();
 			tickFinished = true;
+			setChanged();
+			notifyObservers();
 			synchronized (tickObject) {
 				try {
 					tickObject.wait(); // Wait for tick notification.
@@ -59,6 +66,8 @@ public final class CycleProcessManager extends Observable implements TickReliant
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	@Override

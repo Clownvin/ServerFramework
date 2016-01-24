@@ -13,6 +13,7 @@ public final class CharacterManager extends Observable implements TickReliant, R
 	private static final Set<Character> characterSet = new HashSet<>();
 
 	private static final CharacterManager SINGLETON = new CharacterManager();
+
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
 	}
@@ -34,6 +35,17 @@ public final class CharacterManager extends Observable implements TickReliant, R
 		characterManagerThread.start();
 	}
 
+	private void processCharacters(final boolean regenTick) {
+		synchronized (characterSet) {
+			for (Character character : characterSet) {
+				if (regenTick) {
+					character.applyRegen(Config.REGEN_AMOUNT);
+				}
+				character.process();
+			}
+		}
+	}
+
 	@Override
 	public void run() {
 		final Object tickObject = Main.getTickObject();
@@ -48,21 +60,20 @@ public final class CharacterManager extends Observable implements TickReliant, R
 				}
 			}
 			tickFinished = false;
+			setChanged();
+			notifyObservers();
 			regenTick = tickCount == Config.TICKS_PER_REGEN;
 			if (regenTick) {
 				tickCount = 0;
 			}
-			synchronized (characterSet) {
-				for (Character character : characterSet) {
-					if (regenTick) {
-						character.applyRegen(Config.REGEN_AMOUNT);
-					}
-					character.process();
-				}
-			}
-			tickFinished = true;
+			processCharacters(regenTick);
 			tickCount++;
+			tickFinished = true;
+			setChanged();
+			notifyObservers();
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	@Override

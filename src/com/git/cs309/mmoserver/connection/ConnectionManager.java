@@ -97,6 +97,8 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 		final List<Packet> packets = new ArrayList<>(Config.MAX_CONNECTIONS);
 		while (Main.isRunning()) {
 			tickFinished = false;
+			setChanged();
+			notifyObservers();
 			synchronized (connections) {
 				for (int i = 0; i < connections.size(); i++) {
 					Packet packet = connections.get(i).getPacket();
@@ -116,6 +118,8 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 			}
 			packets.clear();
 			tickFinished = true;
+			setChanged();
+			notifyObservers();
 			synchronized (tickObject) {
 				try {
 					tickObject.wait();
@@ -124,6 +128,8 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 				}
 			}
 		}
+		setChanged();
+		notifyObservers();
 	}
 
 	@Override
