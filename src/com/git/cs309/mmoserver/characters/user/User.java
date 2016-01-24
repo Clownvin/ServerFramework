@@ -58,7 +58,7 @@ public final class User extends Character implements Serializable {
 
 	@Override
 	public void process() {
-		System.out.println("Processing " + this);
+		//System.out.println("Processing " + this);
 	}
 
 	public void setConnection(final AbstractConnection connection) {
