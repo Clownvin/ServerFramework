@@ -17,12 +17,13 @@ public final class ConnectionAcceptor implements Runnable {
 
 	public static void startAcceptor(final int port) {
 		ConnectionAcceptor.port = port;
+		connectionAcceptorThread = new Thread(SINGLETON);
+		connectionAcceptorThread.setName("ConnectionAcceptor");
 		connectionAcceptorThread.start();
 	}
 
 	private ConnectionAcceptor() {
-		connectionAcceptorThread = new Thread(SINGLETON);
-		connectionAcceptorThread.setName("ConnectionAcceptor");
+		
 	}
 
 	@Override
@@ -35,6 +36,7 @@ public final class ConnectionAcceptor implements Runnable {
 			Main.requestExit();
 			return;
 		}
+		System.out.println("Acceptor running on port: "+port);
 		if (acceptorSocket != null && !acceptorSocket.isClosed()) {
 			while (Main.isRunning() && !acceptorSocket.isClosed()) {
 				try {

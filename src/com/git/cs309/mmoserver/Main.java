@@ -5,6 +5,7 @@ import java.util.List;
 
 import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.connection.ConnectionAcceptor;
+import com.git.cs309.mmoserver.io.Logger;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class Main {
@@ -32,11 +33,12 @@ public final class Main {
 	}
 
 	public static void main(String[] args) {
+		System.setOut(Logger.getLogger());
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
 				UserManager.saveAllUsers();
-				System.out.println("Saved all users.");
+				System.out.println("Saved all users before going down.");
 			}
 		});
 		System.out.println("Starting server...");
