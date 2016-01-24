@@ -9,8 +9,8 @@ public final class NPCDefinition {
 	private final int defence;
 	private final int level;
 
-	public NPCDefinition(final String name, final int id, final int maxHealth, final int strength, final int accuracy, final int defence,
-			final int level) {
+	public NPCDefinition(final String name, final int id, final int maxHealth, final int strength, final int accuracy,
+			final int defence, final int level) {
 		this.name = name;
 		this.id = id;
 		this.maxHealth = maxHealth;
@@ -19,7 +19,7 @@ public final class NPCDefinition {
 		this.defence = defence;
 		this.level = level;
 	}
-	
+
 	public String getName() {
 		return name;
 	}

@@ -8,7 +8,7 @@ public abstract class Character {
 	protected volatile boolean isDead; //true is dead
 	protected volatile int x, y;
 	protected transient IDTag idTag;
-	
+
 	public Character() {
 		CharacterManager.addCharacter(this);
 	}
@@ -18,7 +18,7 @@ public abstract class Character {
 		this.y = y;
 		this.idTag = idTag;
 	}
-	
+
 	public void setIDTag(final IDTag idTag) {
 		this.idTag = idTag;
 	}
@@ -26,7 +26,7 @@ public abstract class Character {
 	public abstract void applyDamage(int damageAmount);
 
 	public abstract void applyRegen(int regenAmount);
-	
+
 	public abstract int getMaxHealth();
 
 	public void cleanUp() {
@@ -62,6 +62,6 @@ public abstract class Character {
 		this.x = x;
 		this.y = y;
 	}
-	
+
 	public abstract void process();
 }

@@ -42,7 +42,7 @@ public final class User extends Character implements Serializable {
 
 	@Override
 	public String toString() {
-		return username+":"+getUniqueID();
+		return username + ":" + getUniqueID();
 	}
 
 	@Override
@@ -67,6 +67,6 @@ public final class User extends Character implements Serializable {
 
 	@Override
 	public void process() {
-		System.out.println("Processing "+this);
+		System.out.println("Processing " + this);
 	}
 }

@@ -33,12 +33,12 @@ public class NPC extends Character {
 
 	@Override
 	public void process() {
-		System.out.println("Processing "+this);
+		System.out.println("Processing " + this);
 	}
-	
+
 	@Override
 	public String toString() {
-		return definition.getName()+":"+getUniqueID();
+		return definition.getName() + ":" + getUniqueID();
 	}
 
 }

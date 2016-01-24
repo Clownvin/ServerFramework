@@ -28,8 +28,8 @@ public final class Config {
 	public static final int PLAYER_START_Y = 0;
 
 	public static final int MAX_ENTITIES = 4000;
-	
+
 	public static final int TICKS_PER_REGEN = (int) ((2 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);
-	
+
 	public static final int REGEN_AMOUNT = 1;
 }

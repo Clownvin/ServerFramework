@@ -8,26 +8,26 @@ import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class CharacterManager extends Thread implements TickReliant {
-	
+
 	private static final Set<Character> characterSet = new HashSet<>();
-	
+
 	private static final CharacterManager SINGLETON = new CharacterManager();
 	private volatile boolean tickFinished = true;
-	
+
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
 	}
-	
+
 	public static synchronized void removeCharacter(final Character character) {
 		characterSet.remove(character);
 	}
-	
+
 	private CharacterManager() {
 		Main.addTickReliant(this);
 		this.setName("CharacterManager");
 		this.start();
 	}
-	
+
 	@Override
 	public void run() {
 		final Object tickObject = Main.getTickObject();
