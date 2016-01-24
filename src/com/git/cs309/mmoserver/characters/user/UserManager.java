@@ -146,7 +146,10 @@ public final class UserManager {
 			}
 			User user = USER_TABLE.remove(username.toLowerCase());
 			IP_TABLE.remove(user.getConnection().getIP());
+<<<<<<< HEAD
 			user.cleanUp();
+=======
+>>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 			System.out.println("User " + user + " logged out.");
 		}
 		return true;
