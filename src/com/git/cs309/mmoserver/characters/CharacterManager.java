@@ -14,12 +14,18 @@ public final class CharacterManager extends Observable implements TickReliant, R
 
 	private static final CharacterManager SINGLETON = new CharacterManager();
 
+	private static volatile boolean isStopped = true;
+
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
 	}
 
 	public static CharacterManager getSingleton() {
 		return SINGLETON;
+	}
+
+	public static boolean isStopped() {
+		return isStopped;
 	}
 
 	public static synchronized void removeCharacter(final Character character) {
@@ -51,6 +57,7 @@ public final class CharacterManager extends Observable implements TickReliant, R
 		final Object tickObject = Main.getTickObject();
 		int tickCount = 0;
 		boolean regenTick = false;
+		isStopped = false;
 		while (Main.isRunning()) {
 			synchronized (tickObject) {
 				try {
@@ -72,6 +79,7 @@ public final class CharacterManager extends Observable implements TickReliant, R
 			setChanged();
 			notifyObservers();
 		}
+		isStopped = true;
 		setChanged();
 		notifyObservers();
 	}

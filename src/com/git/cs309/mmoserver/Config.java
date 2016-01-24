@@ -19,6 +19,8 @@ public final class Config {
 
 	public static final String USER_FILE_PATH = "./data/users/";
 
+	public static final String LOG_BASE_PATH = "./data/logs/";
+
 	public static final int MILLISECONDS_PER_MINUTE = 60000;
 
 	public static final int TICKS_PER_AUTO_SAVE = (int) ((1 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);

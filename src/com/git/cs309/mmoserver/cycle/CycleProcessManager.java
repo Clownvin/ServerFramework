@@ -12,6 +12,7 @@ import com.git.cs309.mmoserver.util.TickReliant;
 public final class CycleProcessManager extends Observable implements TickReliant, Runnable {
 	private static final CycleProcessManager SINGLETON = new CycleProcessManager();
 	private static final Set<CycleProcess> PROCESSES = new HashSet<>();
+	private static volatile boolean isStopped = true;
 
 	public static void addProcess(final CycleProcess process) {
 		synchronized (PROCESSES) {
@@ -21,6 +22,10 @@ public final class CycleProcessManager extends Observable implements TickReliant
 
 	public static CycleProcessManager getSingleton() {
 		return SINGLETON;
+	}
+
+	public static boolean isStopped() {
+		return isStopped;
 	}
 
 	private volatile boolean tickFinished = true;
@@ -50,6 +55,7 @@ public final class CycleProcessManager extends Observable implements TickReliant
 	@Override
 	public void run() {
 		final Object tickObject = Main.getTickObject();
+		isStopped = false;
 		while (Main.isRunning()) {
 			tickFinished = false;
 			setChanged();
@@ -66,6 +72,7 @@ public final class CycleProcessManager extends Observable implements TickReliant
 				}
 			}
 		}
+		isStopped = true;
 		setChanged();
 		notifyObservers();
 	}

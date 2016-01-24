@@ -16,6 +16,7 @@ import com.git.cs309.mmoserver.util.TickReliant;
 public final class ConnectionManager extends Observable implements TickReliant, Runnable {
 	private static final ConnectionManager SINGLETON = new ConnectionManager();
 	private static volatile boolean tickFinished = false;
+	private static volatile boolean isStopped = true;
 	private static final List<Connection> connections = new ArrayList<>(Config.MAX_CONNECTIONS);
 	private static final Map<String, Connection> connectionMap = new HashMap<>(); // Could hold both username -> connection and ip -> connection. But will probably only hold ip -> connection, since that's all that's needed.
 
@@ -49,6 +50,10 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 		synchronized (connectionMap) {
 			return connectionMap.containsKey(ip);
 		}
+	}
+
+	public static boolean isStopped() {
+		return isStopped;
 	}
 
 	public static Connection removeConnection(final Connection connection) {
@@ -95,6 +100,7 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 	public void run() {
 		final Object tickObject = Main.getTickObject();
 		final List<Packet> packets = new ArrayList<>(Config.MAX_CONNECTIONS);
+		isStopped = false;
 		while (Main.isRunning()) {
 			tickFinished = false;
 			setChanged();
@@ -128,6 +134,7 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 				}
 			}
 		}
+		isStopped = true;
 		setChanged();
 		notifyObservers();
 	}

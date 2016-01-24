@@ -29,7 +29,7 @@ public final class ClosedIDSystem {
 		}
 	}
 
-	private static final CycleArrayList<IDTag> TAG_STACK = new CycleArrayList<>(Config.MAX_ENTITIES);
+	private static final CycleQueue<IDTag> TAG_STACK = new CycleQueue<>(Config.MAX_ENTITIES);
 
 	static {
 		for (int i = 0; i < Config.MAX_ENTITIES; i++) {
