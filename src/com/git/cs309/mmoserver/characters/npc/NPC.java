@@ -11,4 +11,34 @@ public class NPC extends Character {
 		this.definition = definition;
 	}
 
+	@Override
+	public void applyDamage(int damageAmount) {
+		health -= damageAmount;
+		if (health <= 0) {
+			isDead = true;
+		}
+	}
+
+	@Override
+	public void applyRegen(int regenAmount) {
+		if (health + regenAmount <= getMaxHealth()) {
+			health += regenAmount;
+		}
+	}
+
+	@Override
+	public int getMaxHealth() {
+		return definition.getMaxHealth();
+	}
+
+	@Override
+	public void process() {
+		System.out.println("Processing "+this);
+	}
+	
+	@Override
+	public String toString() {
+		return definition.getName()+":"+getUniqueID();
+	}
+
 }

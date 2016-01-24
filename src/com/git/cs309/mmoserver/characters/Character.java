@@ -7,26 +7,30 @@ public abstract class Character {
 	protected volatile int health;
 	protected volatile boolean isDead; //true is dead
 	protected volatile int x, y;
-	protected final IDTag idTag;
+	protected transient IDTag idTag;
+	
+	public Character() {
+		CharacterManager.addCharacter(this);
+	}
 
 	public Character(final int x, final int y, final IDTag idTag) {
 		this.x = x;
 		this.y = y;
 		this.idTag = idTag;
 	}
-
-	public void applyDamage(int damage) {
-		health -= damage;
-		if (health <= 0) {
-			isDead = true;
-		}
+	
+	public void setIDTag(final IDTag idTag) {
+		this.idTag = idTag;
 	}
 
-	public void applyRegen(int regenAmount) {
-		health += regenAmount;
-	}
+	public abstract void applyDamage(int damageAmount);
+
+	public abstract void applyRegen(int regenAmount);
+	
+	public abstract int getMaxHealth();
 
 	public void cleanUp() {
+		CharacterManager.removeCharacter(this);
 		idTag.returnTag();
 	}
 
@@ -58,5 +62,6 @@ public abstract class Character {
 		this.x = x;
 		this.y = y;
 	}
-
+	
+	public abstract void process();
 }

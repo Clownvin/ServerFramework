@@ -42,6 +42,31 @@ public final class User extends Character implements Serializable {
 
 	@Override
 	public String toString() {
-		return username;
+		return username+":"+getUniqueID();
+	}
+
+	@Override
+	public void applyDamage(int damageAmount) {
+		health -= damageAmount;
+		if (health <= 0) {
+			isDead = true;
+		}
+	}
+
+	@Override
+	public void applyRegen(int regenAmount) {
+		if (health + regenAmount <= getMaxHealth()) {
+			health += regenAmount;
+		}
+	}
+
+	@Override
+	public int getMaxHealth() {
+		return 100; // 100 for now. Change later if need be.
+	}
+
+	@Override
+	public void process() {
+		System.out.println("Processing "+this);
 	}
 }

@@ -10,7 +10,7 @@ public final class Config {
 	public static final int PACKETS_PER_TICK_BEFORE_KICK = 30;
 
 	//Desired tick delay
-	public static final long TICK_DELAY = 100; // 100MS (runescape runs around 575MS/tick)
+	public static final long TICK_DELAY = 1000; // 100MS (runescape runs around 575MS/tick)
 
 	//Maximum connections allowed.
 	public static final int MAX_CONNECTIONS = 1000;
@@ -28,4 +28,8 @@ public final class Config {
 	public static final int PLAYER_START_Y = 0;
 
 	public static final int MAX_ENTITIES = 4000;
+	
+	public static final int TICKS_PER_REGEN = (int) ((2 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);
+	
+	public static final int REGEN_AMOUNT = 1;
 }

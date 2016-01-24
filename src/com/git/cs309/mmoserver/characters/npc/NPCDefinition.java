@@ -1,6 +1,7 @@
 package com.git.cs309.mmoserver.characters.npc;
 
 public final class NPCDefinition {
+	private final String name;
 	private final int id;
 	private final int maxHealth;
 	private final int strength;
@@ -8,14 +9,19 @@ public final class NPCDefinition {
 	private final int defence;
 	private final int level;
 
-	public NPCDefinition(final int id, final int maxHealth, final int strength, final int accuracy, final int defence,
+	public NPCDefinition(final String name, final int id, final int maxHealth, final int strength, final int accuracy, final int defence,
 			final int level) {
+		this.name = name;
 		this.id = id;
 		this.maxHealth = maxHealth;
 		this.strength = strength;
 		this.accuracy = accuracy;
 		this.defence = defence;
 		this.level = level;
+	}
+	
+	public String getName() {
+		return name;
 	}
 
 	public int getAccuracy() {

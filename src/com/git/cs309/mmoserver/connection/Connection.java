@@ -57,14 +57,16 @@ public class Connection extends AbstractConnection {
 				do {
 					try {
 						packet = PacketFactory.buildPacket(StreamUtils.readBlockFromStream(input), this);
-					} catch (CorruptDataException e) {
+					} catch (CorruptDataException | NegativeArraySizeException | ArrayIndexOutOfBoundsException e) {
 						System.err.println(e.getMessage());
 					} catch (EndOfStreamReachedException e) {
 						System.err.println(e.getMessage());
 						closeRequested = true;
 						break;
-					} catch (IOException e) {
+					} catch (IOException e) { // Should only be Connection reset
 						System.err.println(e.getMessage());
+						closeRequested = true;
+						break;
 					}
 					if (++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
 						System.out.println(

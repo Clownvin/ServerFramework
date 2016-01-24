@@ -14,6 +14,7 @@ import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.cycle.CycleProcess;
 import com.git.cs309.mmoserver.cycle.CycleProcessManager;
 import com.git.cs309.mmoserver.packets.LoginPacket;
+import com.git.cs309.mmoserver.util.ClosedIDSystem;
 
 public final class UserManager {
 	private static final Hashtable<String, User> USER_TABLE = new Hashtable<>();
@@ -123,6 +124,7 @@ public final class UserManager {
 			USER_TABLE.put(user.getUsername().toLowerCase(), user);
 			IP_TABLE.put(loginPacket.getConnection().getIP(), user);
 		}
+		user.setIDTag(ClosedIDSystem.getTag());
 		System.out.println("User " + user + " logged in.");
 		return true;
 	}
@@ -136,8 +138,8 @@ public final class UserManager {
 			}
 			User user = USER_TABLE.remove(username.toLowerCase());
 			IP_TABLE.remove(user.getConnection().getIP());
-			user.cleanUp();
 			System.out.println("User " + user + " logged out.");
+			user.cleanUp();
 		}
 		return true;
 	}
