@@ -1,16 +1,12 @@
 package com.git.cs309.mmoserver.characters;
-
-<<<<<<< HEAD
+		
 import com.git.cs309.mmoserver.util.ClosedIDSystem.IDTag;
 
-=======
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 public abstract class Character {
 
 	protected volatile int health;
 	protected volatile boolean isDead; //true is dead
 	protected volatile int x, y;
-<<<<<<< HEAD
 	protected final IDTag idTag;
 
 	public Character(final int x, final int y, final IDTag idTag) {
@@ -21,12 +17,6 @@ public abstract class Character {
 	
 	public int getUniqueID() {
 		return idTag.getID();
-=======
-
-	public Character(final int x, final int y) {
-		this.x = x;
-		this.y = y;
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 	}
 
 	public int getHealth() {
@@ -64,12 +54,9 @@ public abstract class Character {
 		this.x = x;
 		this.y = y;
 	}
-<<<<<<< HEAD
 	
 	public void cleanUp() {
 		idTag.returnTag();
 	}
-=======
-
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
+	
 }

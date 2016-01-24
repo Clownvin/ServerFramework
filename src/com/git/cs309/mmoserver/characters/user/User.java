@@ -5,10 +5,7 @@ import java.io.Serializable;
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.characters.Character;
 import com.git.cs309.mmoserver.connection.AbstractConnection;
-<<<<<<< HEAD
 import com.git.cs309.mmoserver.util.ClosedIDSystem;
-=======
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 
 public final class User extends Character implements Serializable {
 
@@ -22,11 +19,7 @@ public final class User extends Character implements Serializable {
 	private transient AbstractConnection connection; // Transient means serialization will ignore this variable.
 
 	public User(final String username, final String password) {
-<<<<<<< HEAD
 		super (Config.PLAYER_START_X, Config.PLAYER_START_Y, ClosedIDSystem.getTag());
-=======
-		super (Config.PLAYER_START_X, Config.PLAYER_START_Y);
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 		this.username = username;
 		this.password = password;
 	}

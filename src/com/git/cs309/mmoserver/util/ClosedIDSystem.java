@@ -31,15 +31,12 @@ public final class ClosedIDSystem {
 	
 	private static final CycleArrayList<IDTag> TAG_STACK = new CycleArrayList<>(Config.MAX_ENTITIES);
 	
-<<<<<<< HEAD
 	static {
 		for (int i = 0; i < Config.MAX_ENTITIES; i++) {
 			TAG_STACK.add(new IDTag(i));
 		}
 	}
 	
-=======
->>>>>>> bd014c8b8f92a308a091b0a131d5455c0a4447be
 	private ClosedIDSystem() {
 		// Static util class, doesn't need to be instantiated.
 	}
