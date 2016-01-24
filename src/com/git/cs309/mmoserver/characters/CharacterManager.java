@@ -1,31 +1,37 @@
 package com.git.cs309.mmoserver.characters;
 
 import java.util.HashSet;
+import java.util.Observable;
 import java.util.Set;
 
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.util.TickReliant;
 
-public final class CharacterManager extends Thread implements TickReliant {
+public final class CharacterManager extends Observable implements TickReliant, Runnable {
 
 	private static final Set<Character> characterSet = new HashSet<>();
 
 	private static final CharacterManager SINGLETON = new CharacterManager();
-	private volatile boolean tickFinished = true;
-
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
+	}
+
+	public static CharacterManager getSingleton() {
+		return SINGLETON;
 	}
 
 	public static synchronized void removeCharacter(final Character character) {
 		characterSet.remove(character);
 	}
 
+	private volatile boolean tickFinished = true;
+
 	private CharacterManager() {
 		Main.addTickReliant(this);
-		this.setName("CharacterManager");
-		this.start();
+		Thread characterManagerThread = new Thread(this);
+		characterManagerThread.setName("CharacterManager");
+		characterManagerThread.start();
 	}
 
 	@Override

@@ -24,27 +24,6 @@ public final class User extends Character implements Serializable {
 		this.password = password;
 	}
 
-	public AbstractConnection getConnection() {
-		return connection;
-	}
-
-	public String getPassword() {
-		return password;
-	}
-
-	public String getUsername() {
-		return username;
-	}
-
-	public void setConnection(final AbstractConnection connection) {
-		this.connection = connection;
-	}
-
-	@Override
-	public String toString() {
-		return username + ":" + getUniqueID();
-	}
-
 	@Override
 	public void applyDamage(int damageAmount) {
 		health -= damageAmount;
@@ -60,13 +39,34 @@ public final class User extends Character implements Serializable {
 		}
 	}
 
+	public AbstractConnection getConnection() {
+		return connection;
+	}
+
 	@Override
 	public int getMaxHealth() {
 		return 100; // 100 for now. Change later if need be.
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public String getUsername() {
+		return username;
+	}
+
 	@Override
 	public void process() {
 		System.out.println("Processing " + this);
+	}
+
+	public void setConnection(final AbstractConnection connection) {
+		this.connection = connection;
+	}
+
+	@Override
+	public String toString() {
+		return username + ":" + getUniqueID();
 	}
 }

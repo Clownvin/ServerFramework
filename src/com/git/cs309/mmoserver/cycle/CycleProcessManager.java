@@ -3,12 +3,13 @@ package com.git.cs309.mmoserver.cycle;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Observable;
 import java.util.Set;
 
 import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.util.TickReliant;
 
-public final class CycleProcessManager extends Thread implements TickReliant {
+public final class CycleProcessManager extends Observable implements TickReliant, Runnable {
 	private static final CycleProcessManager SINGLETON = new CycleProcessManager();
 	private static final Set<CycleProcess> PROCESSES = new HashSet<>();
 
@@ -27,8 +28,9 @@ public final class CycleProcessManager extends Thread implements TickReliant {
 	//Private so that only this class can access constructor.
 	private CycleProcessManager() {
 		Main.addTickReliant(this);
-		this.setName("CycleProcessManager");
-		this.start();
+		Thread cycleProcessManagerThread = new Thread(this);
+		cycleProcessManagerThread.setName("CycleProcessManager");
+		cycleProcessManagerThread.start();
 	}
 
 	@Override

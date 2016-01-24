@@ -19,15 +19,9 @@ public abstract class Character {
 		this.idTag = idTag;
 	}
 
-	public void setIDTag(final IDTag idTag) {
-		this.idTag = idTag;
-	}
-
 	public abstract void applyDamage(int damageAmount);
 
 	public abstract void applyRegen(int regenAmount);
-
-	public abstract int getMaxHealth();
 
 	public void cleanUp() {
 		CharacterManager.removeCharacter(this);
@@ -37,6 +31,8 @@ public abstract class Character {
 	public int getHealth() {
 		return health;
 	}
+
+	public abstract int getMaxHealth();
 
 	public int getUniqueID() {
 		return idTag.getID();
@@ -58,10 +54,14 @@ public abstract class Character {
 		isDead = true;
 	}
 
+	public abstract void process();
+
+	public void setIDTag(final IDTag idTag) {
+		this.idTag = idTag;
+	}
+
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-
-	public abstract void process();
 }

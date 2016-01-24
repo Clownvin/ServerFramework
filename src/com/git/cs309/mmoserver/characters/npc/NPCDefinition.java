@@ -20,10 +20,6 @@ public final class NPCDefinition {
 		this.level = level;
 	}
 
-	public String getName() {
-		return name;
-	}
-
 	public int getAccuracy() {
 		return accuracy;
 	}
@@ -42,6 +38,10 @@ public final class NPCDefinition {
 
 	public int getMaxHealth() {
 		return maxHealth;
+	}
+
+	public String getName() {
+		return name;
 	}
 
 	public int getStrength() {
