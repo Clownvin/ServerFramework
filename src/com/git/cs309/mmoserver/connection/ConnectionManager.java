@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Observable;
 
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.Main;
@@ -13,10 +12,8 @@ import com.git.cs309.mmoserver.packets.PacketHandler;
 import com.git.cs309.mmoserver.packets.PacketType;
 import com.git.cs309.mmoserver.util.TickReliant;
 
-public final class ConnectionManager extends Observable implements TickReliant, Runnable {
+public final class ConnectionManager extends TickReliant {
 	private static final ConnectionManager SINGLETON = new ConnectionManager();
-	private static volatile boolean tickFinished = false;
-	private static volatile boolean isStopped = true;
 	private static final List<Connection> connections = new ArrayList<>(Config.MAX_CONNECTIONS);
 	private static final Map<String, Connection> connectionMap = new HashMap<>(); // Could hold both username -> connection and ip -> connection. But will probably only hold ip -> connection, since that's all that's needed.
 
@@ -52,10 +49,6 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 		}
 	}
 
-	public static boolean isStopped() {
-		return isStopped;
-	}
-
 	public static Connection removeConnection(final Connection connection) {
 		synchronized (connectionMap) {
 			connectionMap.remove(connection.getIP());
@@ -89,11 +82,7 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 	}
 
 	private ConnectionManager() {
-		// Private so that this class can only be instantiated from within.
-		Main.addTickReliant(this);
-		Thread connectionManagerThread = new Thread(this);
-		connectionManagerThread.setName("ConnectionManager");
-		connectionManagerThread.start();
+		super ("ConnectionManager");
 	}
 
 	@Override
@@ -102,7 +91,6 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 		final List<Packet> packets = new ArrayList<>(Config.MAX_CONNECTIONS);
 		isStopped = false;
 		while (Main.isRunning()) {
-			tickFinished = false;
 			setChanged();
 			notifyObservers();
 			synchronized (connections) {
@@ -132,15 +120,11 @@ public final class ConnectionManager extends Observable implements TickReliant, 
 				} catch (InterruptedException e) {
 					// We don't care too much if it gets interrupted.
 				}
+				tickFinished = false;
 			}
 		}
 		isStopped = true;
 		setChanged();
 		notifyObservers();
-	}
-
-	@Override
-	public boolean tickFinished() {
-		return tickFinished;
 	}
 }

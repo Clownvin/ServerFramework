@@ -1,20 +1,17 @@
 package com.git.cs309.mmoserver.characters;
 
 import java.util.HashSet;
-import java.util.Observable;
 import java.util.Set;
 
 import com.git.cs309.mmoserver.Config;
 import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.util.TickReliant;
 
-public final class CharacterManager extends Observable implements TickReliant, Runnable {
+public final class CharacterManager extends TickReliant {
 
 	private static final Set<Character> characterSet = new HashSet<>();
 
 	private static final CharacterManager SINGLETON = new CharacterManager();
-
-	private static volatile boolean isStopped = true;
 
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
@@ -24,21 +21,12 @@ public final class CharacterManager extends Observable implements TickReliant, R
 		return SINGLETON;
 	}
 
-	public static boolean isStopped() {
-		return isStopped;
-	}
-
 	public static synchronized void removeCharacter(final Character character) {
 		characterSet.remove(character);
 	}
 
-	private volatile boolean tickFinished = true;
-
 	private CharacterManager() {
-		Main.addTickReliant(this);
-		Thread characterManagerThread = new Thread(this);
-		characterManagerThread.setName("CharacterManager");
-		characterManagerThread.start();
+		super ("CharacterManager");
 	}
 
 	private void processCharacters(final boolean regenTick) {
@@ -65,8 +53,8 @@ public final class CharacterManager extends Observable implements TickReliant, R
 				} catch (InterruptedException e) {
 					// Don't care too much if it gets interrupted.
 				}
+				tickFinished = false;
 			}
-			tickFinished = false;
 			setChanged();
 			notifyObservers();
 			regenTick = tickCount == Config.TICKS_PER_REGEN;
@@ -82,11 +70,6 @@ public final class CharacterManager extends Observable implements TickReliant, R
 		isStopped = true;
 		setChanged();
 		notifyObservers();
-	}
-
-	@Override
-	public boolean tickFinished() {
-		return tickFinished;
 	}
 
 }

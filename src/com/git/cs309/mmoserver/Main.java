@@ -5,14 +5,18 @@ import java.util.List;
 
 import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.connection.ConnectionAcceptor;
+import com.git.cs309.mmoserver.cycle.CycleProcess;
+import com.git.cs309.mmoserver.cycle.CycleProcessManager;
 import com.git.cs309.mmoserver.gui.ServerGUI;
 import com.git.cs309.mmoserver.io.Logger;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class Main {
-	private static volatile boolean running = false;
-	private static final Object TICK_OBJECT = new Object(); // To notify threads of new tick.
+	
 	private static final List<TickReliant> TICK_RELIANT_LIST = new ArrayList<>();
+	
+	private static volatile boolean running = true;
+	private static final Object TICK_OBJECT = new Object(); // To notify threads of new tick.
 	private static volatile long tickCount = 0; // Tick count.
 
 	public static void addTickReliant(final TickReliant tickReliant) {
@@ -36,6 +40,7 @@ public final class Main {
 	public static void main(String[] args) {
 		ServerGUI.getSingleton().setVisible(true);
 		System.setOut(Logger.getPrintStream());
+		System.setErr(Logger.getPrintStream());
 		Runtime.getRuntime().addShutdownHook(new Thread() {
 			@Override
 			public void run() {
@@ -44,7 +49,6 @@ public final class Main {
 			}
 		});
 		System.out.println("Starting server...");
-		running = true;
 		ConnectionAcceptor.startAcceptor(6667); // TODO Replace with actual port.
 		int ticks = 0;
 		long tickTimes = 0L;
@@ -79,12 +83,12 @@ public final class Main {
 			}
 			if (timeLeft < 0) {
 				System.err.println("Warning: Server is lagging behind desired tick time " + (-timeLeft) + "ms.");
-			} else {
-				try {
-					Thread.sleep(timeLeft);
-				} catch (InterruptedException e) {
-					// Don't really care too much if it gets interrupted.
-				}
+				timeLeft = 5; // It must wait at least a little bit, to allow tickReliants to ready themselves for new tick.
+			}
+			try {
+				Thread.sleep(timeLeft);
+			} catch (InterruptedException e) {
+				// Don't really care too much if it gets interrupted.
 			}
 		}
 		System.out.println("Server going down...");

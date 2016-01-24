@@ -2,6 +2,7 @@ package com.git.cs309.mmoserver.io;
 
 import java.io.File;
 import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.PrintStream;
 import java.util.Calendar;
@@ -23,7 +24,6 @@ public class Logger {
 		private static final LoggerListModel SINGLETON = new LoggerListModel();
 
 		public static void fireContentsChanged() {
-			LoggerPrintStream.defaultStream.println("Firing, " + outputList.size());
 			SINGLETON.fireContentsChanged(SINGLETON, 0, outputList.size());
 			ServerGUI.update();
 		}
@@ -133,7 +133,8 @@ public class Logger {
 		}
 
 		private LoggerPrintStream() throws FileNotFoundException {
-			super(ensureFileExists());
+			super(new FileOutputStream(ensureFileExists(), true));
+			println();
 		}
 
 		@Override
@@ -210,7 +211,7 @@ public class Logger {
 
 		@Override
 		public void println(boolean b) {
-			super.println(b);
+			super.println(Logger.getTimeStamp()+" "+b);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -219,7 +220,7 @@ public class Logger {
 
 		@Override
 		public void println(char c) {
-			super.println(c);
+			super.println(Logger.getTimeStamp()+" "+c);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -228,7 +229,7 @@ public class Logger {
 
 		@Override
 		public void println(char[] s) {
-			super.println(s);
+			super.println(Logger.getTimeStamp()+" "+String.valueOf(s));
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -237,7 +238,7 @@ public class Logger {
 
 		@Override
 		public void println(double d) {
-			super.println(d);
+			super.println(Logger.getTimeStamp()+" "+d);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -246,7 +247,7 @@ public class Logger {
 
 		@Override
 		public void println(float f) {
-			super.println(f);
+			super.println(Logger.getTimeStamp()+" "+f);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -255,7 +256,7 @@ public class Logger {
 
 		@Override
 		public void println(int i) {
-			super.println(i);
+			super.println(Logger.getTimeStamp()+" "+i);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -264,7 +265,7 @@ public class Logger {
 
 		@Override
 		public void println(long l) {
-			super.println(l);
+			super.println(Logger.getTimeStamp()+" "+l);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -273,7 +274,7 @@ public class Logger {
 
 		@Override
 		public void println(Object o) {
-			super.println(o);
+			super.println(Logger.getTimeStamp()+" "+o);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -282,7 +283,7 @@ public class Logger {
 
 		@Override
 		public void println(String message) {
-			super.println(message);
+			super.println(Logger.getTimeStamp()+" "+message);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -304,6 +305,13 @@ public class Logger {
 
 	public static Logger getSingleton() {
 		return SINGLETON;
+	}
+	
+	public static String getTimeStamp() {
+		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
+		int minute = Calendar.getInstance().get(Calendar.MINUTE);
+		int second = Calendar.getInstance().get(Calendar.SECOND);
+		return "[" + (hour < 10 ? "0" : "") + hour + ":" + (minute < 10 ? "0" : "") + minute + ":" + (second < 10 ? "0" : "") + second + "]";
 	}
 
 	private Logger() {
