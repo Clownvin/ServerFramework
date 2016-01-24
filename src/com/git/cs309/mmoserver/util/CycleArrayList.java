@@ -10,12 +10,27 @@ public final class CycleArrayList<T> {
 		array = new Object[totalAmount];
 	}
 
-	public int size() {
-		return size;
+	public boolean add(T e) {
+		ensureCorners();
+		synchronized (array) {
+			if (size == array.length) {
+				return false;
+			}
+			array[placeIndex++] = e;
+			++size;
+		}
+		return true;
 	}
 
-	public boolean isEmpty() {
-		return size == 0;
+	public void clear() {
+		synchronized (array) {
+			for (int i = 0; i < array.length; i++) {
+				array[i] = null;
+			}
+		}
+		size = 0;
+		takeIndex = 0;
+		placeIndex = 0;
 	}
 
 	public boolean contains(Object o) {
@@ -29,9 +44,41 @@ public final class CycleArrayList<T> {
 		return false;
 	}
 
+	private void ensureCorners() {
+		takeIndex %= array.length;
+		placeIndex %= array.length;
+	}
+
+	@SuppressWarnings("unchecked")
+	public T get(int index) {
+		index = (index + takeIndex) % array.length;
+		return (T) array[index];
+	}
+
+	public boolean isEmpty() {
+		return size == 0;
+	}
+
+	@SuppressWarnings("unchecked")
+	public T remove() {
+		ensureCorners();
+		synchronized (array) {
+			if (size == 0) {
+				throw new ArrayIndexOutOfBoundsException("Array is empty, so there is nothing to remove.");
+			}
+			T returnVal = (T) array[takeIndex++];
+			--size;
+			return returnVal;
+		}
+	}
+
+	public int size() {
+		return size;
+	}
+
 	public Object[] toArray() {
 		synchronized (array) {
-			Object[] object  = new Object[size];
+			Object[] object = new Object[size];
 			for (int i = takeIndex, j = 0; j < size; i++, j++) {
 				i %= array.length;
 				object[j] = array[i];
@@ -53,52 +100,5 @@ public final class CycleArrayList<T> {
 			}
 		}
 		return a;
-	}
-
-	public boolean add(T e) {
-		ensureCorners();
-		synchronized (array) {
-			if (size == array.length) {
-				return false;
-			}
-			array[placeIndex++] = e;
-			++size;
-		}
-		return true;
-	}
-	
-	@SuppressWarnings("unchecked")
-	public T remove() {
-		ensureCorners();
-		synchronized (array) {
-			if (size == 0) {
-				throw new ArrayIndexOutOfBoundsException("Array is empty, so there is nothing to remove.");
-			}
-			T returnVal = (T) array[takeIndex++];
-			--size;
-			return returnVal;
-		}
-	}
-	
-	private void ensureCorners() {
-		takeIndex %= array.length;
-		placeIndex %= array.length;
-	}
-
-	public void clear() {
-		synchronized (array) {
-			for (int i = 0; i < array.length; i++) {
-				array[i] = null;
-			}
-		}
-		size = 0;
-		takeIndex = 0;
-		placeIndex = 0;
-	}
-
-	@SuppressWarnings("unchecked")
-	public T get(int index) {
-		index = (index + takeIndex) % array.length;
-		return (T) array[index];
 	}
 }

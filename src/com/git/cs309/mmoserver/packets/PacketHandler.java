@@ -19,7 +19,8 @@ public final class PacketHandler {
 					loginPacket.getConnection().addOutgoingPacket(
 							new ErrorPacket(loginPacket.getConnection(), ErrorPacket.LOGIN_ERROR, "Login failed."));
 				} else {
-					loginPacket.getConnection().addOutgoingPacket(new EventPacket(loginPacket.getConnection(), EventPacket.LOGIN_SUCCESS));
+					loginPacket.getConnection()
+							.addOutgoingPacket(new EventPacket(loginPacket.getConnection(), EventPacket.LOGIN_SUCCESS));
 				}
 			} catch (UserAlreadyLoggedInException e) {
 				System.err.println(e.getMessage());

@@ -1,5 +1,5 @@
 package com.git.cs309.mmoserver.characters;
-		
+
 import com.git.cs309.mmoserver.util.ClosedIDSystem.IDTag;
 
 public abstract class Character {
@@ -14,14 +14,6 @@ public abstract class Character {
 		this.y = y;
 		this.idTag = idTag;
 	}
-	
-	public int getUniqueID() {
-		return idTag.getID();
-	}
-
-	public int getHealth() {
-		return health;
-	}
 
 	public void applyDamage(int damage) {
 		health -= damage;
@@ -29,34 +21,42 @@ public abstract class Character {
 			isDead = true;
 		}
 	}
-         
+
 	public void applyRegen(int regenAmount) {
 		health += regenAmount;
 	}
 
-	public void kill() {
-		isDead = true;
+	public void cleanUp() {
+		idTag.returnTag();
+	}
+
+	public int getHealth() {
+		return health;
+	}
+
+	public int getUniqueID() {
+		return idTag.getID();
+	}
+
+	public int getX() {
+		return x;
+	}
+
+	public int getY() {
+		return y;
 	}
 
 	public boolean isDead() {
 		return isDead;
 	}
 
-	public int getX() {
-		return x;
-	}
-	
-	public int getY() {
-		return y;
+	public void kill() {
+		isDead = true;
 	}
 
 	public void setPosition(int x, int y) {
 		this.x = x;
 		this.y = y;
 	}
-	
-	public void cleanUp() {
-		idTag.returnTag();
-	}
-	
+
 }

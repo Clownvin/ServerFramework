@@ -67,16 +67,6 @@ public final class UserManager {
 		});
 	}
 
-	public static void saveAllUsers() {
-		for (String key : USER_TABLE.keySet()) {
-			try {
-				saveUser(USER_TABLE.get(key));
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-		}
-	}
-
 	public static File getUserFile(final String username) {
 		return new File(Config.USER_FILE_PATH + username.toLowerCase() + ".user");
 	}
@@ -150,6 +140,16 @@ public final class UserManager {
 			System.out.println("User " + user + " logged out.");
 		}
 		return true;
+	}
+
+	public static void saveAllUsers() {
+		for (String key : USER_TABLE.keySet()) {
+			try {
+				saveUser(USER_TABLE.get(key));
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
+		}
 	}
 
 	private static void saveUser(final User user) throws FileNotFoundException, IOException {

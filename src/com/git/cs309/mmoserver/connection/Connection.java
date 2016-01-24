@@ -12,12 +12,12 @@ import com.git.cs309.mmoserver.util.EndOfStreamReachedException;
 import com.git.cs309.mmoserver.util.StreamUtils;
 
 public class Connection extends AbstractConnection {
+	private volatile boolean closeRequested = false;
+
 	public Connection(Socket socket) throws IOException {
 		super(socket);
 		// TODO Auto-generated constructor stub
 	}
-
-	private volatile boolean closeRequested = false;
 
 	@Override
 	public synchronized void close() {

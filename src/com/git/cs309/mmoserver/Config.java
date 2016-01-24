@@ -2,7 +2,7 @@ package com.git.cs309.mmoserver;
 
 public final class Config {
 	//This class is just temporary storage for configuration stuff, like maxes and mins
-//hi
+	//hi
 	//Max bytes per packet.
 	public static final int MAX_PACKET_BYTES = 1000;
 
@@ -22,10 +22,10 @@ public final class Config {
 	public static final int MILLISECONDS_PER_MINUTE = 60000;
 
 	public static final int TICKS_PER_AUTO_SAVE = (int) ((1 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);
-	
+
 	public static final int PLAYER_START_X = 0;
-	
+
 	public static final int PLAYER_START_Y = 0;
-	
+
 	public static final int MAX_ENTITIES = 4000;
 }

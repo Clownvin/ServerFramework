@@ -19,7 +19,7 @@ public final class User extends Character implements Serializable {
 	private transient AbstractConnection connection; // Transient means serialization will ignore this variable.
 
 	public User(final String username, final String password) {
-		super (Config.PLAYER_START_X, Config.PLAYER_START_Y, ClosedIDSystem.getTag());
+		super(Config.PLAYER_START_X, Config.PLAYER_START_Y, ClosedIDSystem.getTag());
 		this.username = username;
 		this.password = password;
 	}
