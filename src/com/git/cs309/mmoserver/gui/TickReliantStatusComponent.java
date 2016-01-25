@@ -26,7 +26,6 @@ public class TickReliantStatusComponent extends Container implements Observer {
 		subject.addObserver(this);
 		this.subject = subject;
 		setLayout(new GridLayout(0, 4));
-		System.out.println(subject.toString() + ": ");
 		subjectName = new JLabel(subject.toString() + ": ");
 		runningLabel = new JLabel("Starting...");
 		averageTimeLabel = new JLabel("N/A");
