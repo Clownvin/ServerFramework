@@ -28,6 +28,7 @@ public abstract class TickReliant extends Observable implements Runnable {
 			@Override
 			public void actionPerformed(ActionEvent e) {
 				start();
+				Main.notifyFailureResolution();
 			}
 
 		});
@@ -60,13 +61,13 @@ public abstract class TickReliant extends Observable implements Runnable {
 
 	@Override
 	public void run() {
-		final Object tickObject = Main.getTickObject();
+		final Object tickLock = Main.getTickLock();
 		isStopped = false;
 		while (Main.isRunning()) {
 			try {
-				synchronized (tickObject) {
+				synchronized (tickLock) {
 					try {
-						tickObject.wait(); // Wait for tick notification.
+						tickLock.wait(); // Wait for tick notification.
 					} catch (InterruptedException e) {
 						// We don't care too much if it gets interrupted.
 					}
@@ -85,6 +86,7 @@ public abstract class TickReliant extends Observable implements Runnable {
 				break;
 			}
 		}
+		tickFinished = true;
 		isStopped = true;
 		setChanged();
 		notifyObservers();

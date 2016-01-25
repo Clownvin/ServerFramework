@@ -2,6 +2,7 @@ package com.git.cs309.mmoserver.gui;
 
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.Graphics;
 import java.awt.GridLayout;
 import java.util.Observable;
 import java.util.Observer;
@@ -32,6 +33,13 @@ public class TickReliantStatusComponent extends Container implements Observer {
 		add(subjectName);
 		add(runningLabel);
 		add(averageTimeLabel);
+	}
+	
+	@Override
+	public void paint(Graphics g) {
+		super.paint(g);
+		g.setColor(Color.BLACK);
+		g.drawRect(0, 0, getWidth()-1, getHeight()-1);
 	}
 
 	@Override

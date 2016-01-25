@@ -14,7 +14,8 @@ public final class Main {
 	private static final List<TickReliant> TICK_RELIANT_LIST = new ArrayList<>();
 
 	private static volatile boolean running = true;
-	private static final Object TICK_OBJECT = new Object(); // To notify threads of new tick.
+	private static final Object TICK_LOCK = new Object(); // To notify threads of new tick.
+	private static final Object FAILURE_RESOLUTION_LOCK = new Object();
 	private static volatile long tickCount = 0; // Tick count.
 
 	public static void addTickReliant(final TickReliant tickReliant) {
@@ -27,8 +28,8 @@ public final class Main {
 		return tickCount;
 	}
 
-	public static Object getTickObject() {
-		return TICK_OBJECT;
+	public static Object getTickLock() {
+		return TICK_LOCK;
 	}
 
 	public static boolean isRunning() {
@@ -52,8 +53,8 @@ public final class Main {
 		long tickTimes = 0L;
 		while (running) {
 			long start = System.currentTimeMillis();
-			synchronized (TICK_OBJECT) {
-				TICK_OBJECT.notifyAll();
+			synchronized (TICK_LOCK) {
+				TICK_LOCK.notifyAll();
 			}
 			boolean allFinished;
 			do {
@@ -64,6 +65,15 @@ public final class Main {
 				}
 				allFinished = true;
 				for (TickReliant t : TICK_RELIANT_LIST) {
+					if (t.isStopped()) {
+						synchronized (FAILURE_RESOLUTION_LOCK) {
+							try {
+								FAILURE_RESOLUTION_LOCK.wait(); // Wait for debugging or error resolution.
+							} catch (InterruptedException e) {
+							}
+						}
+						break;
+					}
 					if (!t.tickFinished()) {
 						allFinished = false;
 						break;
@@ -81,7 +91,7 @@ public final class Main {
 			}
 			if (timeLeft < 0) {
 				System.err.println("Warning: Server is lagging behind desired tick time " + (-timeLeft) + "ms.");
-				timeLeft = 5; // It must wait at least a little bit, to allow tickReliants to ready themselves for new tick.
+				timeLeft = 5; // It must wait at least a little bit, to allow TickReliants to ready themselves for new tick.
 			}
 			try {
 				Thread.sleep(timeLeft);
@@ -90,6 +100,12 @@ public final class Main {
 			}
 		}
 		System.out.println("Server going down...");
+	}
+	
+	public static void notifyFailureResolution() {
+		synchronized (FAILURE_RESOLUTION_LOCK) {
+			FAILURE_RESOLUTION_LOCK.notifyAll();
+		}
 	}
 
 	public static void requestExit() {
