@@ -18,9 +18,7 @@ public final class ClosedIDSystem {
 		}
 
 		public int getID() {
-			if (!inUse) {
-				throw new RuntimeException("Object disobeyed IDTag contract.");
-			}
+			assert (!inUse);
 			return id;
 		}
 
@@ -50,6 +48,6 @@ public final class ClosedIDSystem {
 	}
 
 	private ClosedIDSystem() {
-		// Static util class, doesn't need to be instantiated.
+		assert false;// Static util class, doesn't need to be instantiated.
 	}
 }

@@ -174,6 +174,6 @@ public final class UserManager {
 	}
 
 	private UserManager() {
-		//To prevent instantiation, since this is a static utility class
+		assert false;//To prevent instantiation, since this is a static utility class
 	}
 }

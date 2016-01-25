@@ -36,23 +36,24 @@ public final class ConnectionAcceptor implements Runnable {
 			Main.requestExit();
 			return;
 		}
-		System.out.println("Acceptor running on port: " + port);
 		if (acceptorSocket != null && !acceptorSocket.isClosed()) {
+			System.out.println("Acceptor running on port: " + port);
 			while (Main.isRunning() && !acceptorSocket.isClosed()) {
 				try {
 					Connection connection = new Connection(acceptorSocket.accept());
-					if (!ConnectionManager.full() && !ConnectionManager.ipAlreadyConnected(connection.getIP())) {
-						ConnectionManager.addConnection(connection);
-					} else {
-						if (ConnectionManager.ipAlreadyConnected(connection.getIP())) {
-							connection.forceOutgoingPacket(new ErrorPacket(null, ErrorPacket.GENERAL_ERROR,
-									"Failed to connect because your ip is already logged in."));
-						} else if (ConnectionManager.full()) {
-							connection.forceOutgoingPacket(new ErrorPacket(null, ErrorPacket.GENERAL_ERROR,
-									"Failed to connect because server is full."));
-						}
+					if (ConnectionManager.ipAlreadyConnected(connection.getIP())) {
+						connection.forceOutgoingPacket(new ErrorPacket(null, ErrorPacket.GENERAL_ERROR,
+								"Failed to connect because your ip is already logged in."));
 						connection.close();
+						continue;
 					}
+					if (ConnectionManager.full()) {
+						connection.forceOutgoingPacket(new ErrorPacket(null, ErrorPacket.GENERAL_ERROR,
+								"Failed to connect because server is full."));
+						connection.close();
+						continue;
+					}
+					ConnectionManager.addConnection(connection);
 				} catch (IOException e) {
 					e.printStackTrace();
 					System.out.println("Failed to accept new connection...");
