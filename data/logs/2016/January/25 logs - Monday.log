@@ -1,0 +1,502 @@
+
+[00:04:39] Starting server...
+[00:04:39] Acceptor running on port: 6667
+[00:05:08] Saved all users before going down.
+[00:05:08] Ticks: 288, Cycles: 288
+
+[00:05:26] Starting server...
+[00:05:26] Acceptor running on port: 6667
+[00:05:35] Saved all users before going down.
+[00:05:35] Ticks: 90, Cycles: 90
+
+[00:06:15] Starting server...
+[00:06:15] Acceptor running on port: 6667
+[00:06:40] Saved all users before going down.
+[00:06:40] Ticks: 257, Cycles: 257
+
+[00:06:47] Starting server...
+[00:06:47] Acceptor running on port: 6667
+[00:07:10] Saved all users before going down.
+[00:07:10] Ticks: 225, Cycles: 225
+
+[00:07:24] Starting server...
+[00:07:24] Acceptor running on port: 6667
+[00:07:27] Saved all users before going down.
+[00:07:27] Ticks: 26, Cycles: 26
+
+[00:07:34] Starting server...
+[00:07:34] Acceptor running on port: 6667
+[00:07:37] Saved all users before going down.
+[00:07:37] Ticks: 29, Cycles: 29
+
+[00:07:46] Starting server...
+[00:07:46] Acceptor running on port: 6667
+[00:08:46] Average tick time since last autosave: 1ms.
+[00:08:52] Saved all users before going down.
+[00:08:52] Ticks: 661, Cycles: 661
+
+[00:09:07] Starting server...
+[00:09:07] Acceptor running on port: 6667
+[00:09:22] Saved all users before going down.
+[00:09:22] Ticks: 144, Cycles: 144
+
+[00:09:40] Starting server...
+[00:09:40] Acceptor running on port: 6667
+[00:10:16] Saved all users before going down.
+[00:10:16] Ticks: 366, Cycles: 366
+
+[00:12:04] Starting server...
+[00:12:04] Acceptor running on port: 6667
+[00:12:13] Saved all users before going down.
+[00:12:13] Ticks: 87, Cycles: 87
+
+[00:12:45] Starting server...
+[00:12:45] Acceptor running on port: 6667
+[00:13:45] Average tick time since last autosave: 1ms.
+[00:13:54] Saved all users before going down.
+[00:13:54] Ticks: 698, Cycles: 698
+
+[00:14:15] Starting server...
+[00:14:15] Acceptor running on port: 6667
+[00:15:15] Average tick time since last autosave: 70ms.
+[00:16:06] Connection joined: 127.0.0.1
+[00:16:06] User Clowbn:0 logged in.
+[00:16:06] Warning: Server is lagging behind desired tick time 39ms.
+[00:16:06] Recieved message from connection "127.0.0.1": Lol....
+[00:16:11] Recieved message from connection "127.0.0.1": Lol....
+[00:16:15] Average tick time since last autosave: 70ms.
+[00:16:16] Recieved message from connection "127.0.0.1": Lol....
+[00:16:21] Recieved message from connection "127.0.0.1": Lol....
+[00:16:26] Recieved message from connection "127.0.0.1": Lol....
+[00:16:31] Recieved message from connection "127.0.0.1": Lol....
+[00:16:36] Recieved message from connection "127.0.0.1": Lol....
+[00:16:41] Recieved message from connection "127.0.0.1": Lol....
+[00:16:46] Recieved message from connection "127.0.0.1": Lol....
+[00:16:51] Recieved message from connection "127.0.0.1": Lol....
+[00:16:56] Recieved message from connection "127.0.0.1": Lol....
+[00:17:01] Recieved message from connection "127.0.0.1": Lol....
+[00:17:06] Saved 1 users in 0ms.
+[00:17:06] Recieved message from connection "127.0.0.1": Lol....
+[00:17:11] Recieved message from connection "127.0.0.1": Lol....
+[00:17:15] Average tick time since last autosave: 70ms.
+[00:17:16] Recieved message from connection "127.0.0.1": Lol....
+[00:17:21] Recieved message from connection "127.0.0.1": Lol....
+[00:17:26] Recieved message from connection "127.0.0.1": Lol....
+[00:17:31] Recieved message from connection "127.0.0.1": Lol....
+[00:17:36] Recieved message from connection "127.0.0.1": Lol....
+[00:17:41] Recieved message from connection "127.0.0.1": Lol....
+[00:17:46] Recieved message from connection "127.0.0.1": Lol....
+[00:17:51] Recieved message from connection "127.0.0.1": Lol....
+[00:17:56] Recieved message from connection "127.0.0.1": Lol....
+[00:18:01] Recieved message from connection "127.0.0.1": Lol....
+[00:18:06] Saved 1 users in 0ms.
+[00:18:06] Recieved message from connection "127.0.0.1": Lol....
+[00:18:11] Recieved message from connection "127.0.0.1": Lol....
+[00:18:15] Average tick time since last autosave: 70ms.
+[00:18:16] Recieved message from connection "127.0.0.1": Lol....
+[00:18:21] Recieved message from connection "127.0.0.1": Lol....
+[00:18:26] Recieved message from connection "127.0.0.1": Lol....
+[00:18:31] Recieved message from connection "127.0.0.1": Lol....
+[00:18:36] Recieved message from connection "127.0.0.1": Lol....
+[00:18:41] Recieved message from connection "127.0.0.1": Lol....
+[00:18:46] Recieved message from connection "127.0.0.1": Lol....
+[00:18:51] Recieved message from connection "127.0.0.1": Lol....
+[00:18:56] Recieved message from connection "127.0.0.1": Lol....
+[00:19:01] Recieved message from connection "127.0.0.1": Lol....
+[00:19:06] Saved 1 users in 0ms.
+[00:19:06] Recieved message from connection "127.0.0.1": Lol....
+[00:19:11] Recieved message from connection "127.0.0.1": Lol....
+[00:19:15] Average tick time since last autosave: 70ms.
+[00:19:16] Recieved message from connection "127.0.0.1": Lol....
+[00:19:21] Recieved message from connection "127.0.0.1": Lol....
+[00:19:26] Recieved message from connection "127.0.0.1": Lol....
+[00:19:31] Recieved message from connection "127.0.0.1": Lol....
+[00:19:36] Recieved message from connection "127.0.0.1": Lol....
+[00:19:41] Recieved message from connection "127.0.0.1": Lol....
+[00:19:46] Recieved message from connection "127.0.0.1": Lol....
+[00:19:51] Recieved message from connection "127.0.0.1": Lol....
+[00:19:56] Recieved message from connection "127.0.0.1": Lol....
+[00:20:01] Recieved message from connection "127.0.0.1": Lol....
+[00:20:06] Saved 1 users in 0ms.
+[00:20:06] Recieved message from connection "127.0.0.1": Lol....
+[00:20:11] Recieved message from connection "127.0.0.1": Lol....
+[00:20:15] Average tick time since last autosave: 70ms.
+[00:20:16] Recieved message from connection "127.0.0.1": Lol....
+[00:20:21] Recieved message from connection "127.0.0.1": Lol....
+[00:20:26] Recieved message from connection "127.0.0.1": Lol....
+[00:20:31] Recieved message from connection "127.0.0.1": Lol....
+[00:20:36] Recieved message from connection "127.0.0.1": Lol....
+[00:20:41] Recieved message from connection "127.0.0.1": Lol....
+[00:20:45] Saved all users before going down.
+[00:20:45] Ticks: 3891, Cycles: 3891
+
+[00:21:59] Starting server...
+[00:21:59] Acceptor running on port: 6667
+[00:22:14] Saved all users before going down.
+[00:22:14] Ticks: 149, Cycles: 149
+
+[00:22:50] Starting server...
+[00:22:50] Acceptor running on port: 6667
+[00:22:59] Saved all users before going down.
+[00:22:59] Ticks: 85, Cycles: 85
+
+[00:23:02] Starting server...
+[00:23:02] Acceptor running on port: 6667
+[00:23:06] Saved all users before going down.
+[00:23:06] Ticks: 42, Cycles: 42
+
+[00:43:57] Starting server...
+[00:43:57] Acceptor running on port: 6667
+[00:44:08] Saved all users before going down.
+[00:44:08] Ticks: 114, Cycles: 114
+
+[00:44:34] Starting server...
+[00:44:34] Acceptor running on port: 6667
+[00:44:38] Saved all users before going down.
+[00:44:38] Ticks: 33, Cycles: 33
+
+[00:44:44] Starting server...
+[00:44:44] Acceptor running on port: 6667
+[00:44:53] Saved all users before going down.
+[00:44:53] Ticks: 94, Cycles: 94
+
+[00:45:30] Starting server...
+[00:45:30] Acceptor running on port: 6667
+[00:45:50] Saved all users before going down.
+[00:45:50] Ticks: 201, Cycles: 201
+
+[00:46:41] Starting server...
+[00:46:41] Acceptor running on port: 6667
+[00:46:50] Saved all users before going down.
+[00:46:50] Ticks: 85, Cycles: 85
+
+[00:46:55] Starting server...
+[00:46:55] Acceptor running on port: 6667
+[00:47:07] Saved all users before going down.
+[00:47:07] Ticks: 126, Cycles: 126
+
+[00:47:44] Starting server...
+[00:47:44] Acceptor running on port: 6667
+[00:47:46] Saved all users before going down.
+[00:47:46] Ticks: 24, Cycles: 24
+
+[00:47:51] Starting server...
+[00:47:51] Acceptor running on port: 6667
+[00:47:58] Saved all users before going down.
+[00:47:58] Ticks: 78, Cycles: 78
+
+[00:48:02] Starting server...
+[00:48:02] Acceptor running on port: 6667
+[00:48:13] Saved all users before going down.
+[00:48:13] Ticks: 112, Cycles: 112
+
+[00:51:47] Starting server...
+[00:51:47] Acceptor running on port: 6667
+[00:51:47] Warning: Server is lagging behind desired tick time 31ms.
+[00:52:02] Warning: Server is lagging behind desired tick time 10ms.
+[00:52:04] Saved all users before going down.
+[00:52:04] Ticks: 176, Cycles: 176
+
+[00:52:13] Starting server...
+[00:52:13] Acceptor running on port: 6667
+[00:52:25] Warning: Server is lagging behind desired tick time 589ms.
+[00:53:14] Average tick time since last autosave: 72ms.
+[00:54:14] Average tick time since last autosave: 70ms.
+[00:55:14] Average tick time since last autosave: 70ms.
+[00:55:50] Saved all users before going down.
+[00:55:50] Ticks: 2157, Cycles: 2157
+
+[00:56:33] Starting server...
+[00:56:33] Acceptor running on port: 6667
+[00:57:33] Average tick time since last autosave: 1ms.
+[00:58:33] Average tick time since last autosave: 1ms.
+[00:59:01] Saved all users before going down.
+
+[00:59:36] Starting server...
+Exception in thread "CycleProcessManager" [00:59:36] java.lang.RuntimeException
+[00:59:36] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:65)
+[00:59:36] 	at java.lang.Thread.run(Thread.java:745)
+[00:59:36] Acceptor running on port: 6667
+Exception in thread "AWT-EventQueue-0" [00:59:44] java.lang.IllegalThreadStateException
+[00:59:44] 	at java.lang.Thread.start(Thread.java:705)
+[00:59:44] 	at com.git.cs309.mmoserver.util.TickReliant.restart(TickReliant.java:43)
+[00:59:44] 	at com.git.cs309.mmoserver.util.TickReliant$1.actionPerformed(TickReliant.java:30)
+[00:59:44] 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+[00:59:44] 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+[00:59:44] 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+[00:59:44] 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+[00:59:44] 	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+[00:59:44] 	at java.awt.Component.processMouseEvent(Component.java:6535)
+[00:59:44] 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+[00:59:44] 	at java.awt.Component.processEvent(Component.java:6300)
+[00:59:44] 	at java.awt.Container.processEvent(Container.java:2236)
+[00:59:44] 	at java.awt.Component.dispatchEventImpl(Component.java:4891)
+[00:59:44] 	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+[00:59:44] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[00:59:44] 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+[00:59:44] 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+[00:59:44] 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+[00:59:44] 	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+[00:59:44] 	at java.awt.Window.dispatchEventImpl(Window.java:2750)
+[00:59:44] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[00:59:44] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+[00:59:44] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+[00:59:44] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+[00:59:44] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+[00:59:44] 	at java.security.AccessController.doPrivileged(Native Method)
+[00:59:44] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[00:59:44] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+[00:59:44] 	at java.awt.EventQueue$4.run(EventQueue.java:731)
+[00:59:44] 	at java.awt.EventQueue$4.run(EventQueue.java:729)
+[00:59:44] 	at java.security.AccessController.doPrivileged(Native Method)
+[00:59:44] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[00:59:44] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+[00:59:44] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+[00:59:44] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+[00:59:44] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+[00:59:44] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+[00:59:44] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+[00:59:44] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+Exception in thread "AWT-EventQueue-0" [00:59:45] java.lang.IllegalThreadStateException
+[00:59:45] 	at java.lang.Thread.start(Thread.java:705)
+[00:59:45] 	at com.git.cs309.mmoserver.util.TickReliant.restart(TickReliant.java:43)
+[00:59:45] 	at com.git.cs309.mmoserver.util.TickReliant$1.actionPerformed(TickReliant.java:30)
+[00:59:45] 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+[00:59:45] 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+[00:59:45] 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+[00:59:45] 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+[00:59:45] 	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+[00:59:45] 	at java.awt.Component.processMouseEvent(Component.java:6535)
+[00:59:45] 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+[00:59:45] 	at java.awt.Component.processEvent(Component.java:6300)
+[00:59:45] 	at java.awt.Container.processEvent(Container.java:2236)
+[00:59:45] 	at java.awt.Component.dispatchEventImpl(Component.java:4891)
+[00:59:45] 	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+[00:59:45] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[00:59:45] 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+[00:59:45] 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+[00:59:45] 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+[00:59:45] 	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+[00:59:45] 	at java.awt.Window.dispatchEventImpl(Window.java:2750)
+[00:59:45] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[00:59:45] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+[00:59:45] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+[00:59:45] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+[00:59:45] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+[00:59:45] 	at java.security.AccessController.doPrivileged(Native Method)
+[00:59:45] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[00:59:45] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+[00:59:45] 	at java.awt.EventQueue$4.run(EventQueue.java:731)
+[00:59:45] 	at java.awt.EventQueue$4.run(EventQueue.java:729)
+[00:59:45] 	at java.security.AccessController.doPrivileged(Native Method)
+[00:59:45] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[00:59:45] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+[00:59:45] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+[00:59:45] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+[00:59:45] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+[00:59:45] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+[00:59:45] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+[00:59:45] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[01:00:16] Saved all users before going down.
+
+[01:00:32] Starting server...
+[01:00:33] Acceptor running on port: 6667
+Exception in thread "AWT-EventQueue-0" [01:00:36] java.lang.IllegalThreadStateException
+[01:00:36] 	at java.lang.Thread.start(Thread.java:705)
+[01:00:36] 	at com.git.cs309.mmoserver.util.TickReliant.restart(TickReliant.java:43)
+[01:00:36] 	at com.git.cs309.mmoserver.util.TickReliant$1.actionPerformed(TickReliant.java:30)
+[01:00:36] 	at javax.swing.AbstractButton.fireActionPerformed(AbstractButton.java:2022)
+[01:00:36] 	at javax.swing.AbstractButton$Handler.actionPerformed(AbstractButton.java:2348)
+[01:00:36] 	at javax.swing.DefaultButtonModel.fireActionPerformed(DefaultButtonModel.java:402)
+[01:00:36] 	at javax.swing.DefaultButtonModel.setPressed(DefaultButtonModel.java:259)
+[01:00:36] 	at javax.swing.plaf.basic.BasicButtonListener.mouseReleased(BasicButtonListener.java:252)
+[01:00:36] 	at java.awt.Component.processMouseEvent(Component.java:6535)
+[01:00:36] 	at javax.swing.JComponent.processMouseEvent(JComponent.java:3324)
+[01:00:36] 	at java.awt.Component.processEvent(Component.java:6300)
+[01:00:36] 	at java.awt.Container.processEvent(Container.java:2236)
+[01:00:36] 	at java.awt.Component.dispatchEventImpl(Component.java:4891)
+[01:00:36] 	at java.awt.Container.dispatchEventImpl(Container.java:2294)
+[01:00:36] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[01:00:36] 	at java.awt.LightweightDispatcher.retargetMouseEvent(Container.java:4888)
+[01:00:36] 	at java.awt.LightweightDispatcher.processMouseEvent(Container.java:4525)
+[01:00:36] 	at java.awt.LightweightDispatcher.dispatchEvent(Container.java:4466)
+[01:00:36] 	at java.awt.Container.dispatchEventImpl(Container.java:2280)
+[01:00:36] 	at java.awt.Window.dispatchEventImpl(Window.java:2750)
+[01:00:36] 	at java.awt.Component.dispatchEvent(Component.java:4713)
+[01:00:36] 	at java.awt.EventQueue.dispatchEventImpl(EventQueue.java:758)
+[01:00:36] 	at java.awt.EventQueue.access$500(EventQueue.java:97)
+[01:00:36] 	at java.awt.EventQueue$3.run(EventQueue.java:709)
+[01:00:36] 	at java.awt.EventQueue$3.run(EventQueue.java:703)
+[01:00:36] 	at java.security.AccessController.doPrivileged(Native Method)
+[01:00:36] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[01:00:36] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:86)
+[01:00:36] 	at java.awt.EventQueue$4.run(EventQueue.java:731)
+[01:00:36] 	at java.awt.EventQueue$4.run(EventQueue.java:729)
+[01:00:36] 	at java.security.AccessController.doPrivileged(Native Method)
+[01:00:36] 	at java.security.ProtectionDomain$JavaSecurityAccessImpl.doIntersectionPrivilege(ProtectionDomain.java:76)
+[01:00:36] 	at java.awt.EventQueue.dispatchEvent(EventQueue.java:728)
+[01:00:36] 	at java.awt.EventDispatchThread.pumpOneEventForFilters(EventDispatchThread.java:201)
+[01:00:36] 	at java.awt.EventDispatchThread.pumpEventsForFilter(EventDispatchThread.java:116)
+[01:00:36] 	at java.awt.EventDispatchThread.pumpEventsForHierarchy(EventDispatchThread.java:105)
+[01:00:36] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:101)
+[01:00:36] 	at java.awt.EventDispatchThread.pumpEvents(EventDispatchThread.java:93)
+[01:00:36] 	at java.awt.EventDispatchThread.run(EventDispatchThread.java:82)
+[01:01:33] Average tick time since last autosave: 1ms.
+[01:02:33] Average tick time since last autosave: 1ms.
+[01:03:33] Average tick time since last autosave: 1ms.
+[01:04:33] Average tick time since last autosave: 1ms.
+[01:05:02] Saved all users before going down.
+
+[01:05:05] Starting server...
+[01:05:05] Acceptor running on port: 6667
+[01:05:12] Saved all users before going down.
+
+[01:05:33] Starting server...
+[01:05:33] java.lang.Exception
+[01:05:33] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:33] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:33] Acceptor running on port: 6667
+[01:05:38] java.lang.Exception
+[01:05:38] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:38] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:40] java.lang.Exception
+[01:05:40] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:40] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:40] java.lang.Exception
+[01:05:40] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:40] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:41] java.lang.Exception
+[01:05:41] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:41] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:41] java.lang.Exception
+[01:05:41] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:41] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:41] java.lang.Exception
+[01:05:41] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:41] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:41] java.lang.Exception
+[01:05:41] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:41] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:41] java.lang.Exception
+[01:05:41] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:41] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:42] java.lang.Exception
+[01:05:42] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:42] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:43] java.lang.Exception
+[01:05:43] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:43] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:44] java.lang.Exception
+[01:05:44] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:44] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:45] java.lang.Exception
+[01:05:45] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:45] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:46] java.lang.Exception
+[01:05:46] 	at com.git.cs309.mmoserver.cycle.CycleProcessManager.run(CycleProcessManager.java:66)
+[01:05:46] 	at java.lang.Thread.run(Thread.java:745)
+[01:05:55] Saved all users before going down.
+
+[01:17:31] Starting server...
+[01:17:32] Warning: Server is lagging behind desired tick time 146ms.
+[01:17:32] Acceptor running on port: 6667
+[01:17:43] Connection joined: 127.0.0.1
+[01:17:44] User Clowbn:0 logged in.
+[01:17:44] Warning: Server is lagging behind desired tick time 72ms.
+[01:17:44] Recieved message from connection "127.0.0.1": Lol....
+[01:17:49] Recieved message from connection "127.0.0.1": Lol....
+[01:17:54] Recieved message from connection "127.0.0.1": Lol....
+[01:17:56] Saved all users before going down.

@@ -5,7 +5,6 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class CycleProcessManager extends TickReliant {
@@ -27,7 +26,8 @@ public final class CycleProcessManager extends TickReliant {
 		super("CycleProcessManager");
 	}
 
-	private synchronized void processAllProcesses() {
+	@Override
+	protected synchronized void tickTask() {
 		List<CycleProcess> removalList = new ArrayList<>();
 		synchronized (PROCESSES) {
 			for (CycleProcess process : PROCESSES) {
@@ -39,30 +39,5 @@ public final class CycleProcessManager extends TickReliant {
 			}
 			PROCESSES.removeAll(removalList);
 		}
-	}
-
-	@Override
-	public void run() {
-		final Object tickObject = Main.getTickObject();
-		isStopped = false;
-		while (Main.isRunning()) {
-			setChanged();
-			notifyObservers();
-			processAllProcesses();
-			tickFinished = true;
-			setChanged();
-			notifyObservers();
-			synchronized (tickObject) {
-				try {
-					tickObject.wait(); // Wait for tick notification.
-				} catch (InterruptedException e) {
-					// We don't care too much if it gets interrupted.
-				}
-				tickFinished = false;
-			}
-		}
-		isStopped = true;
-		setChanged();
-		notifyObservers();
 	}
 }

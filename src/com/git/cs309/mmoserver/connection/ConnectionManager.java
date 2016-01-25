@@ -6,7 +6,6 @@ import java.util.List;
 import java.util.Map;
 
 import com.git.cs309.mmoserver.Config;
-import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.packets.Packet;
 import com.git.cs309.mmoserver.packets.PacketHandler;
 import com.git.cs309.mmoserver.packets.PacketType;
@@ -86,45 +85,25 @@ public final class ConnectionManager extends TickReliant {
 	}
 
 	@Override
-	public void run() {
-		final Object tickObject = Main.getTickObject();
+	protected void tickTask() {
 		final List<Packet> packets = new ArrayList<>(Config.MAX_CONNECTIONS);
-		isStopped = false;
-		while (Main.isRunning()) {
-			setChanged();
-			notifyObservers();
-			synchronized (connections) {
-				for (int i = 0; i < connections.size(); i++) {
-					Packet packet = connections.get(i).getPacket();
-					if (packet != null && packet.getPacketType() != PacketType.NULL_PACKET) {
-						packets.add(packet);
-					}
-					if (connections.get(i).isDisconnected()) {
-						System.out.println("Connection disconnected: " + removeConnection(connections.get(i)).getIP());
-					}
+		synchronized (connections) {
+			for (int i = 0; i < connections.size(); i++) {
+				Packet packet = connections.get(i).getPacket();
+				if (packet != null && packet.getPacketType() != PacketType.NULL_PACKET) {
+					packets.add(packet);
 				}
-			}
-			synchronized (SINGLETON) {
-				SINGLETON.notifyAll();
-			}
-			for (Packet packet : packets) {
-				PacketHandler.handlePacket(packet);
-			}
-			packets.clear();
-			tickFinished = true;
-			setChanged();
-			notifyObservers();
-			synchronized (tickObject) {
-				try {
-					tickObject.wait();
-				} catch (InterruptedException e) {
-					// We don't care too much if it gets interrupted.
+				if (connections.get(i).isDisconnected()) {
+					System.out.println("Connection disconnected: " + removeConnection(connections.get(i)).getIP());
 				}
-				tickFinished = false;
 			}
 		}
-		isStopped = true;
-		setChanged();
-		notifyObservers();
+		synchronized (SINGLETON) {
+			SINGLETON.notifyAll();
+		}
+		for (Packet packet : packets) {
+			PacketHandler.handlePacket(packet);
+		}
+		packets.clear();
 	}
 }

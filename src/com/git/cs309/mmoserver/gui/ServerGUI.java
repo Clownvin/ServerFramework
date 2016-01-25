@@ -1,6 +1,7 @@
 package com.git.cs309.mmoserver.gui;
 
 import java.awt.BorderLayout;
+import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -46,7 +47,7 @@ public class ServerGUI extends JFrame {
 		statusPanel.add(CharacterManager.getSingleton().getComponent());
 		statusPanel.add(ConnectionManager.getSingleton().getComponent());
 		statusPanel.add(CycleProcessManager.getSingleton().getComponent());
-		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.Y_AXIS));
+		statusPanel.setLayout(new GridLayout(10, 1));
 		tabbedPane.addTab("Status", null, statusPanel, null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}
