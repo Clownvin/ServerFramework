@@ -16,16 +16,16 @@ public class TickReliantStatusComponent extends Component implements Observer {
 	 * 
 	 */
 	private static final long serialVersionUID = 6968306919146587028L;
-	
+
 	private volatile TickReliant subject;
-	
+
 	public TickReliantStatusComponent(final TickReliant subject) {
 		setSize(300, 20);
 		setMinimumSize(new Dimension(300, 20));
 		subject.addObserver(this);
 		this.subject = subject;
 	}
-	
+
 	@Override
 	public void paint(Graphics g) {
 		g.setColor(getBackground());
@@ -33,9 +33,9 @@ public class TickReliantStatusComponent extends Component implements Observer {
 		g.setColor(Color.BLACK);
 		g.drawRect(0, 0, getWidth(), getHeight());
 		FontMetrics fm = g.getFontMetrics();
-	    int x = (getWidth() - fm.stringWidth(subject.toString())) / 2;
-	    int y = (fm.getAscent() + (getHeight() - (fm.getAscent() + fm.getDescent())) / 2);
-	    g.drawString(subject.toString(), x, y);
+		int x = (getWidth() - fm.stringWidth(subject.toString())) / 2;
+		int y = (fm.getAscent() + (getHeight() - (fm.getAscent() + fm.getDescent())) / 2);
+		g.drawString(subject.toString(), x, y);
 	}
 
 	@Override

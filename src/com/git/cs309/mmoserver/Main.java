@@ -5,16 +5,14 @@ import java.util.List;
 
 import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.connection.ConnectionAcceptor;
-import com.git.cs309.mmoserver.cycle.CycleProcess;
-import com.git.cs309.mmoserver.cycle.CycleProcessManager;
 import com.git.cs309.mmoserver.gui.ServerGUI;
 import com.git.cs309.mmoserver.io.Logger;
 import com.git.cs309.mmoserver.util.TickReliant;
 
 public final class Main {
-	
+
 	private static final List<TickReliant> TICK_RELIANT_LIST = new ArrayList<>();
-	
+
 	private static volatile boolean running = true;
 	private static final Object TICK_OBJECT = new Object(); // To notify threads of new tick.
 	private static volatile long tickCount = 0; // Tick count.

@@ -26,7 +26,7 @@ public final class CharacterManager extends TickReliant {
 	}
 
 	private CharacterManager() {
-		super ("CharacterManager");
+		super("CharacterManager");
 	}
 
 	private void processCharacters(final boolean regenTick) {

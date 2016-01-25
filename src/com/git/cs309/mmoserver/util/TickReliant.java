@@ -10,7 +10,7 @@ public abstract class TickReliant extends Observable implements Runnable {
 	protected volatile boolean isStopped = true;
 	protected final String name;
 	protected final TickReliantStatusComponent component = new TickReliantStatusComponent(this);
-	
+
 	public TickReliant(final String name) {
 		this.name = name;
 		Main.addTickReliant(this);
@@ -18,21 +18,21 @@ public abstract class TickReliant extends Observable implements Runnable {
 		tickReliantThread.setName(name);
 		tickReliantThread.start();
 	}
-	
-	public boolean tickFinished() {
-		return tickFinished;
+
+	public TickReliantStatusComponent getComponent() {
+		return component;
 	}
-	
+
 	public boolean isStopped() {
 		return isStopped;
 	}
-	
+
+	public boolean tickFinished() {
+		return tickFinished;
+	}
+
 	@Override
 	public String toString() {
 		return name;
-	}
-	
-	public TickReliantStatusComponent getComponent() {
-		return component;
 	}
 }

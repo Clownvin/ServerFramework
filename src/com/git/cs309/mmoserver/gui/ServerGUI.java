@@ -1,7 +1,6 @@
 package com.git.cs309.mmoserver.gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;

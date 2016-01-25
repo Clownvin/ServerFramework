@@ -211,7 +211,7 @@ public class Logger {
 
 		@Override
 		public void println(boolean b) {
-			super.println(Logger.getTimeStamp()+" "+b);
+			super.println(Logger.getTimeStamp() + " " + b);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -220,7 +220,7 @@ public class Logger {
 
 		@Override
 		public void println(char c) {
-			super.println(Logger.getTimeStamp()+" "+c);
+			super.println(Logger.getTimeStamp() + " " + c);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -229,7 +229,7 @@ public class Logger {
 
 		@Override
 		public void println(char[] s) {
-			super.println(Logger.getTimeStamp()+" "+String.valueOf(s));
+			super.println(Logger.getTimeStamp() + " " + String.valueOf(s));
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -238,7 +238,7 @@ public class Logger {
 
 		@Override
 		public void println(double d) {
-			super.println(Logger.getTimeStamp()+" "+d);
+			super.println(Logger.getTimeStamp() + " " + d);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -247,7 +247,7 @@ public class Logger {
 
 		@Override
 		public void println(float f) {
-			super.println(Logger.getTimeStamp()+" "+f);
+			super.println(Logger.getTimeStamp() + " " + f);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -256,7 +256,7 @@ public class Logger {
 
 		@Override
 		public void println(int i) {
-			super.println(Logger.getTimeStamp()+" "+i);
+			super.println(Logger.getTimeStamp() + " " + i);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -265,7 +265,7 @@ public class Logger {
 
 		@Override
 		public void println(long l) {
-			super.println(Logger.getTimeStamp()+" "+l);
+			super.println(Logger.getTimeStamp() + " " + l);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -274,7 +274,7 @@ public class Logger {
 
 		@Override
 		public void println(Object o) {
-			super.println(Logger.getTimeStamp()+" "+o);
+			super.println(Logger.getTimeStamp() + " " + o);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -283,7 +283,7 @@ public class Logger {
 
 		@Override
 		public void println(String message) {
-			super.println(Logger.getTimeStamp()+" "+message);
+			super.println(Logger.getTimeStamp() + " " + message);
 			defaultStream.print('\n');
 			outputList.add(pendingMessage);
 			pendingMessage = "";
@@ -306,12 +306,13 @@ public class Logger {
 	public static Logger getSingleton() {
 		return SINGLETON;
 	}
-	
+
 	public static String getTimeStamp() {
 		int hour = Calendar.getInstance().get(Calendar.HOUR_OF_DAY);
 		int minute = Calendar.getInstance().get(Calendar.MINUTE);
 		int second = Calendar.getInstance().get(Calendar.SECOND);
-		return "[" + (hour < 10 ? "0" : "") + hour + ":" + (minute < 10 ? "0" : "") + minute + ":" + (second < 10 ? "0" : "") + second + "]";
+		return "[" + (hour < 10 ? "0" : "") + hour + ":" + (minute < 10 ? "0" : "") + minute + ":"
+				+ (second < 10 ? "0" : "") + second + "]";
 	}
 
 	private Logger() {

@@ -24,7 +24,7 @@ public final class CycleProcessManager extends TickReliant {
 
 	//Private so that only this class can access constructor.
 	private CycleProcessManager() {
-		super ("CycleProcessManager");
+		super("CycleProcessManager");
 	}
 
 	private synchronized void processAllProcesses() {

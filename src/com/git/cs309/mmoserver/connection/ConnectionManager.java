@@ -82,7 +82,7 @@ public final class ConnectionManager extends TickReliant {
 	}
 
 	private ConnectionManager() {
-		super ("ConnectionManager");
+		super("ConnectionManager");
 	}
 
 	@Override
