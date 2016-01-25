@@ -82,7 +82,7 @@ public final class UserManager {
 	}
 
 	public static User getUserForUsername(final String username) {
-		return USER_TABLE.get(username);
+		return USER_TABLE.get(username.toLowerCase());
 	}
 
 	public static boolean isLoggedIn(final String username) {
@@ -134,7 +134,7 @@ public final class UserManager {
 
 	public static boolean logOut(final String username) {
 		if (isLoggedIn(username)) {
-			User user = USER_TABLE.get(username.toLowerCase());
+			User user = getUserForUsername(username);
 			try {
 				saveUser(user);
 			} catch (IOException e) {
@@ -148,7 +148,7 @@ public final class UserManager {
 	}
 
 	private static void removeUserFromTables(final User user) {
-		USER_TABLE.remove(user);
+		USER_TABLE.remove(user.getUsername().toLowerCase());
 		IP_TABLE.remove(user.getConnection().getIP());
 	}
 
