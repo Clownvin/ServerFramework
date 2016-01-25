@@ -10,9 +10,11 @@ public final class CharacterManager extends TickReliant {
 
 	private static final Set<Character> characterSet = new HashSet<>();
 	private static final CharacterManager SINGLETON = new CharacterManager();
+
 	public static synchronized void addCharacter(final Character character) {
 		characterSet.add(character);
 	}
+
 	public static CharacterManager getSingleton() {
 		return SINGLETON;
 	}

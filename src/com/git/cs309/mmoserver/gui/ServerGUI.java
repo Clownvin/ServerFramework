@@ -1,7 +1,7 @@
 package com.git.cs309.mmoserver.gui;
 
 import java.awt.BorderLayout;
-import java.awt.GridLayout;
+import java.awt.Component;
 
 import javax.swing.BoxLayout;
 import javax.swing.JFrame;
@@ -11,9 +11,6 @@ import javax.swing.JScrollPane;
 import javax.swing.JTabbedPane;
 import javax.swing.SwingConstants;
 
-import com.git.cs309.mmoserver.characters.CharacterManager;
-import com.git.cs309.mmoserver.connection.ConnectionManager;
-import com.git.cs309.mmoserver.cycle.CycleProcessManager;
 import com.git.cs309.mmoserver.io.Logger;
 
 public class ServerGUI extends JFrame {
@@ -24,7 +21,12 @@ public class ServerGUI extends JFrame {
 	private static final long serialVersionUID = 3687402786121828571L;
 	private static final JList<String> consoleList = new JList<>(Logger.getListModel());
 	private static final JScrollPane consolePane = new JScrollPane(consoleList);
+	private static final JPanel statusPanel = new JPanel();
 	private static final ServerGUI SINGLETON = new ServerGUI();
+
+	public static void addComponentToStatusPanel(final Component component) {
+		statusPanel.add(component);
+	}
 
 	public static ServerGUI getSingleton() {
 		return SINGLETON;
@@ -43,11 +45,7 @@ public class ServerGUI extends JFrame {
 		consolePanePanel.add(consolePane);
 		consolePanePanel.setLayout(new BoxLayout(consolePanePanel, BoxLayout.Y_AXIS));
 		tabbedPane.addTab("Console", null, consolePanePanel, null);
-		JPanel statusPanel = new JPanel();
-		statusPanel.add(CharacterManager.getSingleton().getComponent());
-		statusPanel.add(ConnectionManager.getSingleton().getComponent());
-		statusPanel.add(CycleProcessManager.getSingleton().getComponent());
-		statusPanel.setLayout(new GridLayout(10, 1));
+		statusPanel.setLayout(new BoxLayout(statusPanel, BoxLayout.Y_AXIS));
 		tabbedPane.addTab("Status", null, statusPanel, null);
 		setDefaultCloseOperation(EXIT_ON_CLOSE);
 	}

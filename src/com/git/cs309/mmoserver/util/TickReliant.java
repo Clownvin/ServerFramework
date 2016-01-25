@@ -7,6 +7,7 @@ import java.util.Observable;
 import javax.swing.JButton;
 
 import com.git.cs309.mmoserver.Main;
+import com.git.cs309.mmoserver.gui.ServerGUI;
 import com.git.cs309.mmoserver.gui.TickReliantStatusComponent;
 
 public abstract class TickReliant extends Observable implements Runnable {
@@ -33,6 +34,7 @@ public abstract class TickReliant extends Observable implements Runnable {
 
 		});
 		component.add(restartButton);
+		ServerGUI.addComponentToStatusPanel(component);
 		Main.addTickReliant(this);
 		start();
 	}

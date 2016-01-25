@@ -25,7 +25,7 @@ public class Client {
 		while (true) {
 			StreamUtils.writeBlockToStream(socket.getOutputStream(),
 					new MessagePacket(null, (byte) 0, "Lol....").toBytes());
-			Thread.sleep(5000);
+			Thread.sleep(5);
 		}
 		//}
 

@@ -101,7 +101,7 @@ public final class Main {
 		}
 		System.out.println("Server going down...");
 	}
-	
+
 	public static void notifyFailureResolution() {
 		synchronized (FAILURE_RESOLUTION_LOCK) {
 			FAILURE_RESOLUTION_LOCK.notifyAll();
