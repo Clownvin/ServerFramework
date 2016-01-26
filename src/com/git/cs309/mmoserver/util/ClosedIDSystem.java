@@ -18,7 +18,7 @@ public final class ClosedIDSystem {
 		}
 
 		public int getID() {
-			assert (!inUse);
+			assert (inUse);
 			return id;
 		}
 

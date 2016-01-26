@@ -60,7 +60,7 @@ public abstract class Character {
 		this.idTag = idTag;
 	}
 
-	public void setPosition(int x, int y) {
+	public void setPosition(final int x, final int y) {
 		this.x = x;
 		this.y = y;
 	}
