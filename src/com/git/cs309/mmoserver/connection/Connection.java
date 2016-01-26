@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.net.Socket;
 
 import com.git.cs309.mmoserver.Config;
+import com.git.cs309.mmoserver.Main;
 import com.git.cs309.mmoserver.characters.user.User;
 import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.packets.PacketFactory;
@@ -68,7 +69,7 @@ public class Connection extends AbstractConnection {
 						closeRequested = true;
 						break;
 					}
-					if (++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
+					if (!Main.wasPaused() && ++packetsThisTick == Config.PACKETS_PER_TICK_BEFORE_KICK) {
 						System.out.println(
 								this + " exceeded the maximum packets per tick limit. Packets: " + packetsThisTick);
 						closeRequested = true;
@@ -78,10 +79,6 @@ public class Connection extends AbstractConnection {
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
-		try {
-			sleep(Config.TICK_DELAY); // Sleeping to ensure that managers are up to date.
-		} catch (InterruptedException e) {
 		}
 		User user = UserManager.getUserForIP(ip);
 		if (user != null) {

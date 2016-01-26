@@ -14,6 +14,8 @@ public final class Main {
 	private static final List<TickReliant> TICK_RELIANT_LIST = new ArrayList<>();
 
 	private static volatile boolean running = true;
+	private static volatile boolean paused = false;
+	private static volatile int pauseTimerRemaining = 0;
 	private static final Object TICK_LOCK = new Object(); // To notify threads of new tick.
 	private static final Object FAILURE_RESOLUTION_LOCK = new Object();
 	private static volatile long tickCount = 0; // Tick count.
@@ -35,6 +37,10 @@ public final class Main {
 	public static boolean isRunning() {
 		return running;
 	}
+	
+	public static boolean wasPaused() {
+		return paused;
+	}
 
 	public static void main(String[] args) {
 		ServerGUI.getSingleton().setVisible(true);
@@ -52,6 +58,9 @@ public final class Main {
 		int ticks = 0;
 		long tickTimes = 0L;
 		while (running) {
+			if (wasPaused() && pauseTimerRemaining-- == 0) {
+				paused = false;
+			}
 			long start = System.currentTimeMillis();
 			synchronized (TICK_LOCK) {
 				TICK_LOCK.notifyAll();
@@ -66,6 +75,8 @@ public final class Main {
 				allFinished = true;
 				for (TickReliant t : TICK_RELIANT_LIST) {
 					if (t.isStopped()) {
+						paused = true;
+						pauseTimerRemaining = Config.PAUSE_TIMER_TICKS;
 						synchronized (FAILURE_RESOLUTION_LOCK) {
 							try {
 								FAILURE_RESOLUTION_LOCK.wait(); // Wait for debugging or error resolution.

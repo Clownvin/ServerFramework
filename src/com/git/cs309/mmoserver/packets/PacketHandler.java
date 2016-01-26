@@ -3,13 +3,13 @@ package com.git.cs309.mmoserver.packets;
 import com.git.cs309.mmoserver.characters.user.InvalidPasswordException;
 import com.git.cs309.mmoserver.characters.user.UserAlreadyLoggedInException;
 import com.git.cs309.mmoserver.characters.user.UserManager;
+import com.git.cs309.mmoserver.connection.ConnectionManager;
 
 public final class PacketHandler {
 	public static void handlePacket(final Packet packet) {
 		switch (packet.getPacketType()) {
 		case MESSAGE_PACKET:
-			System.out.println("Recieved message from connection \"" + packet.getConnection().getIP() + "\": "
-					+ ((MessagePacket) packet).getMessage());
+			ConnectionManager.sendPacketToAllConnections(packet);
 			break;
 		case LOGIN_PACKET:
 			LoginPacket loginPacket = (LoginPacket) packet;
@@ -39,6 +39,13 @@ public final class PacketHandler {
 			System.out.println("Recieved error packet from connection \"" + packet.getConnection().getIP() + "\".");
 			System.out.println("Error code: " + errorPacket.getErrorCode());
 			System.out.println("Error message: " + errorPacket.getErrorMessage());
+			break;
+		case TEST_PACKET:
+			TestPacket testPacket = (TestPacket) packet;
+			switch (testPacket.getTest()) {
+			case 0:
+				throw new RuntimeException("Just a test.");
+			}
 			break;
 		default:
 			System.out.println("No case for type: " + packet.getPacketType());

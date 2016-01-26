@@ -89,12 +89,13 @@ public final class ConnectionManager extends TickReliant {
 		final List<Packet> packets = new ArrayList<>(Config.MAX_CONNECTIONS);
 		synchronized (connections) {
 			for (int i = 0; i < connections.size(); i++) {
+				if (connections.get(i).isDisconnected()) {
+					System.out.println("Connection disconnected: " + removeConnection(connections.get(i--)).getIP());
+					continue;
+				}
 				Packet packet = connections.get(i).getPacket();
 				if (packet != null && packet.getPacketType() != PacketType.NULL_PACKET) {
 					packets.add(packet);
-				}
-				if (connections.get(i).isDisconnected()) {
-					System.out.println("Connection disconnected: " + removeConnection(connections.get(i)).getIP());
 				}
 			}
 		}

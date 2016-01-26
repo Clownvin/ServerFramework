@@ -67,8 +67,9 @@ public final class CycleQueue<T> implements Queue<T> {
 
 	@Override
 	public synchronized boolean contains(Object o) {
-		for (Object obj : array) {
-			if (obj.equals(o)) {
+		for (int i = takeIndex, j = 0; j < size; i++, j++) {
+			i %= array.length;
+			if (array[i].equals(o)) {
 				return true;
 			}
 		}
@@ -161,7 +162,8 @@ public final class CycleQueue<T> implements Queue<T> {
 		if (size == 0) {
 			throw new IllegalStateException("CycleQueue is currently empty.");
 		}
-		T returnVal = (T) array[takeIndex++];
+		T returnVal = (T) array[takeIndex];
+		array[takeIndex++] = null;
 		--size;
 		modifications++;
 		return returnVal;
