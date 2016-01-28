@@ -5,9 +5,16 @@ import com.git.cs309.mmoserver.characters.user.UserAlreadyLoggedInException;
 import com.git.cs309.mmoserver.characters.user.UserManager;
 import com.git.cs309.mmoserver.connection.ConnectionManager;
 
+/**
+ * 
+ * @author Clownvin
+ * 
+ *         Packet handler. Handles packets. Can also interpret this as a packet
+ *         distributer, if the need arises for packets to be handled elsewhere.
+ */
 public final class PacketHandler {
 	public static void handlePacket(final Packet packet) {
-		switch (packet.getPacketType()) {
+		switch (packet.getPacketType()) { // Case for each type of packet.
 		case MESSAGE_PACKET:
 			ConnectionManager.sendPacketToAllConnections(packet);
 			break;
@@ -48,7 +55,7 @@ public final class PacketHandler {
 			}
 			break;
 		default:
-			System.out.println("No case for type: " + packet.getPacketType());
+			System.out.println("No case for type: " + packet.getPacketType()); // If you get this message, then you NEED to add a case for the missing type.
 		}
 	}
 }

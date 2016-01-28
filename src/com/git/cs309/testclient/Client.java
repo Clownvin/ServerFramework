@@ -30,8 +30,8 @@ public class Client {
 						new TestPacket(null, TestPacket.EXCEPTION_TEST).toBytes());
 				wait = 0;
 			} else {
-			StreamUtils.writeBlockToStream(socket.getOutputStream(),
-					new MessagePacket(null, (byte) 0, "Lol....").toBytes());
+				StreamUtils.writeBlockToStream(socket.getOutputStream(),
+						new MessagePacket(null, (byte) 0, "Lol....").toBytes());
 			}
 			Thread.sleep(50);
 		}

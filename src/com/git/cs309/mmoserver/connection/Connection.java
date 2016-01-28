@@ -12,12 +12,17 @@ import com.git.cs309.mmoserver.util.CorruptDataException;
 import com.git.cs309.mmoserver.util.EndOfStreamReachedException;
 import com.git.cs309.mmoserver.util.StreamUtils;
 
+/**
+ * 
+ * @author Clownvin
+ *
+ * 
+ */
 public class Connection extends AbstractConnection {
 	private volatile boolean closeRequested = false;
 
 	public Connection(Socket socket) throws IOException {
 		super(socket);
-		// TODO Auto-generated constructor stub
 	}
 
 	@Override
@@ -58,9 +63,9 @@ public class Connection extends AbstractConnection {
 				do {
 					try {
 						packet = PacketFactory.buildPacket(StreamUtils.readBlockFromStream(input), this);
-					} catch (CorruptDataException | NegativeArraySizeException | ArrayIndexOutOfBoundsException e) {
+					} catch (CorruptDataException | NegativeArraySizeException | ArrayIndexOutOfBoundsException e) { // Just general exception that might occur for bad packets.
 						System.err.println(e.getMessage());
-					} catch (EndOfStreamReachedException e) {
+					} catch (EndOfStreamReachedException e) { // End of the stream was reached, meaning there's no more data, ever.
 						System.err.println(e.getMessage());
 						closeRequested = true;
 						break;

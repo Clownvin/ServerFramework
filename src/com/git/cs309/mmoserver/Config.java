@@ -8,7 +8,7 @@ public final class Config {
 
 	//Desired tick delay
 	public static final long TICK_DELAY = 100; // 100MS (runescape runs around 575MS/tick)
-	
+
 	//Max packets/tick before automatically closes connection.
 	public static final int PACKETS_PER_TICK_BEFORE_KICK = (int) (TICK_DELAY / 10);
 
@@ -32,7 +32,7 @@ public final class Config {
 	public static final int MAX_ENTITIES = 4000;
 
 	public static final int TICKS_PER_REGEN = (int) ((2 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);
-	
+
 	public static final int PAUSE_TIMER_TICKS = (int) ((.5 * MILLISECONDS_PER_MINUTE) / TICK_DELAY);
 
 	public static final int REGEN_AMOUNT = 1;

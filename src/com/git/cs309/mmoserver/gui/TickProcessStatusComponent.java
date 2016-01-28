@@ -9,21 +9,21 @@ import java.util.Observer;
 
 import javax.swing.JLabel;
 
-import com.git.cs309.mmoserver.util.TickReliant;
+import com.git.cs309.mmoserver.util.TickProcess;
 
-public class TickReliantStatusComponent extends Container implements Observer {
+public class TickProcessStatusComponent extends Container implements Observer {
 
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 6968306919146587028L;
 
-	private volatile TickReliant subject;
+	private volatile TickProcess subject;
 	private volatile JLabel subjectName;
 	private volatile JLabel runningLabel;
 	private volatile JLabel averageTimeLabel;
 
-	public TickReliantStatusComponent(final TickReliant subject) {
+	public TickProcessStatusComponent(final TickProcess subject) {
 		subject.addObserver(this);
 		this.subject = subject;
 		setLayout(new GridLayout(0, 4));

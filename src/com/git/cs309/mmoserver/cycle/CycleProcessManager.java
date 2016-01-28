@@ -5,12 +5,28 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import com.git.cs309.mmoserver.util.TickReliant;
+import com.git.cs309.mmoserver.util.TickProcess;
 
-public final class CycleProcessManager extends TickReliant {
+/**
+ * 
+ * @author Clownvin
+ * 
+ *         Handles all CycleProcesses. A CycleProcess is simply a task that
+ *         needs to be executed per tick, but doesn't need or can't implement
+ *         TickReliant themselves. Good uses for CycleProcesses are: Events,
+ *         Walking, Buffs, things like that. CycleProcesses can also terminate
+ *         if a condition is met.
+ */
+public final class CycleProcessManager extends TickProcess {
 	private static final CycleProcessManager SINGLETON = new CycleProcessManager();
-	private static final Set<CycleProcess> PROCESSES = new HashSet<>();
+	private static final Set<CycleProcess> PROCESSES = new HashSet<>(); // Set of processes.
 
+	/**
+	 * Add a new process for execution.
+	 * 
+	 * @param process
+	 *            new process
+	 */
 	public static void addProcess(final CycleProcess process) {
 		synchronized (PROCESSES) {
 			PROCESSES.add(process);
@@ -28,11 +44,11 @@ public final class CycleProcessManager extends TickReliant {
 
 	@Override
 	protected synchronized void tickTask() {
-		List<CycleProcess> removalList = new ArrayList<>();
+		List<CycleProcess> removalList = new ArrayList<>(); // List of objects to remove after finished processing. Because of for-each loop, concurrent modification would occur if they were removed during loop.
 		synchronized (PROCESSES) {
 			for (CycleProcess process : PROCESSES) {
 				process.process();
-				if (process.finished()) {
+				if (process.finished()) { // Check if process is finished.
 					process.end();
 					removalList.add(process);
 				}
